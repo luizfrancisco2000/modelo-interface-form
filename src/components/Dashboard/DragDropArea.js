@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 import { makeStyles } from '@material-ui/core/styles'
 import Charts from './Charts'
@@ -21,43 +21,46 @@ const useStyles = makeStyles({
     }
 })
 
+const initialState =  {
+    cards: {
+           'card-1': {
+               id: 'card-1',
+               title: 'Dauasas trendigita casauito',
+                type: 'doughnut'
+            },
+           'card-2': {
+               id: 'card-2',
+               title: 'Dauasas trendigita casauito',
+               type: 'doughnut'
+            },
+           'card-3': {
+               id: 'card-3',
+               title: 'Dauasas trendigita casauito',
+               type: 'bar'
+            },
+           'card-4': {
+               id: 'card-4',
+               title: 'Dauasas trendigita casauito',
+               type: 'bar'
+            },
+       },
+       columns: {
+           'column-1': {
+               id: 'column-1',
+               cardIds: ['card-1', 'card-2', 'card-3']
+           },
+           'column-2': {
+               id: 'column-2',
+               cardIds: ['card-4']
+           }
+       },
+       columnOrder: ['column-1', 'column-2']
+   }
+
+
 export default function DragDropArea(){
     const classes = useStyles();
-    const state =  {
-        cards: {
-               'card-1': {
-                   id: 'card-1',
-                   title: 'Dauasas trendigita casauito',
-                    type: 'doughnut'
-                },
-               'card-2': {
-                   id: 'card-2',
-                   title: 'Dauasas trendigita casauito',
-                   type: 'doughnut'
-                },
-               'card-3': {
-                   id: 'card-3',
-                   title: 'Dauasas trendigita casauito',
-                   type: 'bar'
-                },
-               'card-4': {
-                   id: 'card-4',
-                   title: 'Dauasas trendigita casauito',
-                   type: 'bar'
-                },
-           },
-           columns: {
-               'column-1': {
-                   id: 'column-1',
-                   cardIds: ['card-1', 'card-2', 'card-3']
-               },
-               'column-2': {
-                   id: 'column-2',
-                   cardIds: ['card-4']
-               }
-           },
-           columnOrder: ['column-1', 'column-2']
-       }
+    const [ state, setState ] = useState(initialState)
 
     const onDragEnd = result => {
         
@@ -98,7 +101,7 @@ export default function DragDropArea(){
                 }
             }
             
-            this.setState(newState)
+            setState(newState)
             return
         }
         
@@ -125,7 +128,7 @@ export default function DragDropArea(){
                 [newFinish.id]: newFinish,
             }
         }
-        this.setState(newState)
+        setState(newState)
        
     }
 
