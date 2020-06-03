@@ -106,13 +106,14 @@ function Links(props) {
                         </ListItem>
                     </Link>
 
-
-                    <ListItem button>
-                        <ListItemIcon>
-                            <Looks5Icon />
-                        </ListItemIcon>
-                        <ListItemText primary="Auditoria 5s"></ListItemText>
-                    </ListItem>
+                    <Link to="forms">
+                        <ListItem button>
+                            <ListItemIcon>
+                                <Looks5Icon />
+                            </ListItemIcon>
+                            <ListItemText primary="Auditoria 5s"></ListItemText>
+                        </ListItem>
+                    </Link>
                 </List>
             </Drawer>
         </div>
