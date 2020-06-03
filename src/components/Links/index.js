@@ -7,6 +7,10 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import IconButton from '@material-ui/core/IconButton'
 import clsx from 'clsx';
+import {
+    BrowserRouter as Router,
+    Link
+} from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -55,7 +59,7 @@ function Links(props) {
     const theme = useTheme();
     const open = props.text
 
-   
+
 
     return (
         <div>
@@ -70,34 +74,39 @@ function Links(props) {
                         [classes.drawerOpen]: open,
                         [classes.drawerClose]: !open,
                     }, classes.paper),
-                    
+
                 }}
             >
 
                 <div className={classes.toolbar}>
-                <Typography>Flex Industries</Typography>
+                    <Typography>Flex Industries</Typography>
                     <IconButton onClick={props.handleDrawerClose}>
                         {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
                     </IconButton>
                 </div>
-                
+
                 <Divider />
 
                 <List className={classes.list}>
-                    <ListItem  button >
-                        <ListItemIcon>
-                            <DashboardIcon />
-                        </ListItemIcon>
-                        <ListItemText className={classes.listItem}>Dashboard</ListItemText>
-                    </ListItem>
+                    <Link to="/">
+                        <ListItem button >
+                            <ListItemIcon>
+                                <DashboardIcon />
+                            </ListItemIcon>
+                            <ListItemText className={classes.listItem}>Dashboard</ListItemText>
+                        </ListItem>
+                    </Link>
 
-                    <ListItem button>
-                        <ListItemIcon>
-                            <StorageIcon />
-                        </ListItemIcon>
-                        <ListItemText primary="Auditorias"></ListItemText>
+                    <Link to="/auditorias">
+                        <ListItem button>
+                            <ListItemIcon>
+                                <StorageIcon />
+                            </ListItemIcon>
+                            <ListItemText primary="Auditorias"></ListItemText>
+                        </ListItem>
+                    </Link>
 
-                    </ListItem>
+
                     <ListItem button>
                         <ListItemIcon>
                             <Looks5Icon />

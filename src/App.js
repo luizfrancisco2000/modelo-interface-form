@@ -1,26 +1,46 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import Dashboard from './components/Dashboard';
 import Header from './components/Header';
 import Links from './components/Links';
+import Table from './components/Table/index';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from "react-router-dom";
 
 function App() {
   const [open, setOpen] = useState(false);
   const handleDrawerOpen = () => {
     setOpen(true);
   };
-  
+
   const handleDrawerClose = () => {
     setOpen(false);
   };
 
-  
+
   console.log(open)
   return (
-    <div className="App">
-      <Header handleDrawerOpen={handleDrawerOpen} text={open} />
-      <Links handleDrawerClose={handleDrawerClose} text={open}/>
-      <Dashboard text={open}/>
-    </div>
+    <Router>
+      <Switch>
+        <Route path="/" exact>
+          <div className="App">
+            <Header handleDrawerOpen={handleDrawerOpen} text={open} />
+            <Links handleDrawerClose={handleDrawerClose} text={open} />
+            <Dashboard text={open} />
+          </div>
+        </Route>
+
+        <Route path="/auditorias" exact>
+          <div className="App">
+            <Header handleDrawerOpen={handleDrawerOpen} text={open} />
+            <Links handleDrawerClose={handleDrawerClose} text={open} />
+            <Table text={open} />
+          </div>
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
