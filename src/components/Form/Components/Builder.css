@@ -17,7 +17,7 @@
     display: flex;
     flex-flow: column;
     margin-left: 30px;
-    margin-top: 50px;
+    
     width: 65%;
     min-width: 500px;
 }
