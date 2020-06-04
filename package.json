@@ -17,7 +17,11 @@
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
-    "typeface-roboto": "0.0.75"
+    "typeface-roboto": "0.0.75",
+    "axios": "0.19.2",
+    "fg-loadcss": "^3.1.0",
+    "react-select": "^3.1.0",
+    "react-dropzone": "^11.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
