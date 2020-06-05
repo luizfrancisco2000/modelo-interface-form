@@ -4,7 +4,7 @@ import AddIcon from '@material-ui/icons/Add';
 import Select from 'react-select';
 import TextField from '@material-ui/core/TextField';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-
+import MenuItem from "@material-ui/core/MenuItem";
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -14,27 +14,31 @@ import CloseIcon from '@material-ui/icons/Close';
 class ComboBox extends Component{
 
     state = {
-        options: Object.values(this.props.options).map(element => {
-            return {label:element.label, value:element.label}
-        }),
+        selectedValue:''
     }
-    handleChange = (selectedOption) =>{
+    handleChange = (selectedOption) =>{   
         
-        this.setState({selectedValue: selectedOption.value});
+        this.setState({selectedValue: selectedOption.target.value});
     }
 
     render(){
-        console.log(this.state.options)
+       
         return(
             <div style={{width:'60%'}}> 
 
                 <div >{this.props.label}</div>
-                    <Select value={this.state.options.filter(({value}) => value === this.state.selectedValue)}
-                        onChange={this.handleChange}
-                        options={this.state.options} placeholder="">
+                <TextField style={{width:'60%'}} value = {this.state.selectedValue} select
+                onChange={this.handleChange}>
+                    {Object.values(this.props.options).map(element => {
+                        
+                        return (
+                            <MenuItem key={element.label} value={element.label}>
+                                {element.label}
+                             </MenuItem>
+                        )
+                    })}
+                </TextField>
                     
-                    </Select>
-
             </div>
         )
     }

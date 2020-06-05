@@ -13,13 +13,13 @@ import '../Builder.css'
 
 const RadioOption = props =>{
     return(
-        <div style={{padding:0}} className="areaOption">
-            <RadioOp></RadioOp> 
-            
-            <div className="textOption">
-                {props.label}
-            </div>
-        </div>     
+        <FormControlLabel 
+            style={{padding:0}} className="areaOption"
+            value = {props.label} label={props.label}
+            control = {<RadioOp/>}            
+        >
+
+        </FormControlLabel>  
     )
 }
 
@@ -153,7 +153,7 @@ const RadioBuilder = props =>{
                     }
                     label="Obrigatório"
                 />
-                <div className="optionQuestion">
+                <div style={{flex:1}} className="optionQuestion">
                     <IconButton className="addOption" size="small" onClick={(event) => addOption(event)}>
                         <AddIcon style={{color:'#05daa7'}}></AddIcon>
                     </IconButton>  

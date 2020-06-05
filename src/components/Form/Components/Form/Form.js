@@ -6,11 +6,23 @@ import '../Builder.css'
 export default props =>{
     
     const sub = (data) =>{
+        var json = []
         
-        [...document.form.elements].forEach(element => {
-            console.log(element.value)
-        });
-        
+        var resp = [...document.form.elements]
+
+        for(var i = 0; i < resp.length-1; i++){
+            if(resp[i].value != undefined){
+                console.log(resp[i].option)
+                if(resp[i].type !== "radio" && resp[i].type !== "checkbox")
+                    json.push({value:resp[i].value})
+                else if(resp[i].checked)
+                    json.push({value:resp[i].value})
+            }
+        }
+     
+        for(var i = 0; i < json.length; i++){
+            console.log(json[i])
+        }
         alert('data')
     }
 

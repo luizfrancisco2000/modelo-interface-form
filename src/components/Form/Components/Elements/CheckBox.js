@@ -13,13 +13,13 @@ import '../Builder.css'
 
 const CheckOption = props =>{
     return(
-        <div style={{padding:0}} className="areaOption">
-            <Checkbox></Checkbox> 
-            
-            <div className="textOption">
-                {props.label}
-            </div>
-        </div>         
+        <FormControlLabel 
+            style={{padding:0}} className="areaOption"
+            value = {props.label} label={props.label}
+            control = {<Checkbox/>}  
+            teste = {"eae"}          
+        >
+        </FormControlLabel>           
     )
 }
 
