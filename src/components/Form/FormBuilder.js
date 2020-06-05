@@ -9,8 +9,9 @@ import AppBar from './Components/Form/AppBarForm'
 import { types} from './Components/Form/Elements'
 import DragDrop from './Components/Form/DragDrop'
 import Form from './Components/Form/Form'
+import ViewTitle from './Components/ViewForm/ViewTitle'
 import './Components/Builder.css'
-import axios from './bd/client.js'
+import axios from './../../bd/client.js'
 
 class App extends Component {
   state = {
@@ -19,7 +20,7 @@ class App extends Component {
     formVisible: false,
     selectDrag: 0,
     enviado: {},
-  
+    titulo: {}
   }
 
   converte = () =>{
@@ -62,7 +63,7 @@ class App extends Component {
 
   gerarTitulo=(Json)=>{
     this.setState({ enviado: Json })
-
+    this.setState({ titulo: Json })
   }
   changeVisibility = (event) => {
     this.setState({ formVisible: !this.state.formVisible })
@@ -235,7 +236,7 @@ class App extends Component {
     
     return (
       <div className="container">
-        <FormTitle gerarTitulo={this.gerarTitulo}></FormTitle>
+        <ViewTitle forms={this.state.titulo} />
         <Form form={this.converte()}></Form>
       </div>
     )

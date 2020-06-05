@@ -4,6 +4,7 @@ import Header from './components/Header';
 import Links from './components/Links';
 import Table from './components/Table/index';
 import Form from './components/Form';
+import ViewForm from './components/Form/Components/ViewForm/index';
 import {
   BrowserRouter as Router,
   Switch,
@@ -50,6 +51,15 @@ function App() {
             <Form text={open} />
           </div>
         </Route>
+        <Route path="/formResp/" exact>
+          
+          <div className="App">
+            <Header handleDrawerOpen={handleDrawerOpen} text={open} />
+            <Links handleDrawerClose={handleDrawerClose} text={open} />
+            <ViewForm text={open} />
+          </div>
+        </Route>
+        
       </Switch>
     </Router>
   );

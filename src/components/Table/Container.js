@@ -8,75 +8,83 @@ import AddIcon from '@material-ui/icons/Add'
 import { InputAdornment } from '@material-ui/core';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import Table from './Table'
+import {
+  BrowserRouter as Router,
+  Link
+} from "react-router-dom";
 
 
 const styles = makeStyles((theme) => ({
-  container: {      
+  container: {
   },
-  title:{
+  title: {
     fontSize: 24,
     marginBottom: 10,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    flex:1,
+    flex: 1,
     minWidth: 250
   },
-  btn: { 
+  btn: {
     marginLeft: '2%',
-    color:"#6e7573"
+    color: "#6e7573"
   },
-  areaTitle:{
+  areaTitle: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    flexWrap: 'wrap',    
+    flexWrap: 'wrap',
     marginBottom: 10
   },
 
-  areaControl:{
+  areaControl: {
     minWidth: 400,
     display: "flex",
     justifyContent: "center",
     alignItems: "center"
-    },
-    input:{
-        height: 30,
-    }
+  },
+  input: {
+    height: 30,
+  }
 
 }));
 
 export default function container(props) {
   const classes = styles();
-  
-  return(
-    <div className={classes.container}>
-        <div className={classes.areaTitle}>
-            <div className = {classes.title}>
-                Auditoria 5s - Admin
-            </div>
-                
-            <div className={classes.areaControl}>
-                <TextField
-                    type="search"
-                    variant="outlined"
-                    placeholder="Pesquise"
-                    InputProps={{
-                    startAdornment: (
-                        <InputAdornment position="start">
-                            <SearchIcon color="disabled"/>
-                        </InputAdornment>
-                    ),
-                    className: classes.input
-                    }}
-                />
 
-                <IconButton style={{backgroundColor:'#05daa7'}} size="small" className={classes.btn}> <AddIcon style={{ color: "white" }}/> </IconButton>
-                <IconButton size="small" className={classes.btn}> <SortIcon/> </IconButton>
-                <IconButton size="small" className={classes.btn}> <AssignmentIcon/> </IconButton>
+  return (
+    <div className={classes.container}>
+      <div className={classes.areaTitle}>
+        <div className={classes.title}>
+          Auditoria 5s - Admin
             </div>
+
+        <div className={classes.areaControl}>
+          <TextField
+            type="search"
+            variant="outlined"
+            placeholder="Pesquise"
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <SearchIcon color="disabled" />
+                </InputAdornment>
+              ),
+              className: classes.input
+            }}
+          />
+
+          <Link to="forms">
+            <IconButton style={{ backgroundColor: '#05daa7' }} size="small" className={classes.btn}>
+              <AddIcon style={{ color: "white" }} />
+            </IconButton>
+          </Link>
+          <IconButton size="small" className={classes.btn}> <SortIcon /> </IconButton>
+          <IconButton size="small" className={classes.btn}> <AssignmentIcon /> </IconButton>
         </div>
-        <Table></Table>
+      </div>
+      <Table></Table>
     </div>
   )
 }
