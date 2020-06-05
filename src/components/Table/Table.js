@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -69,7 +69,7 @@ const rows = [
   createData('Auditoria 5s - Admin', 'Administrativo', 'ativo', '12/05/2020')
 ];
 
-const useStyles = makeStyles({
+const useStyles = themes =>({
   table: {
     minWidth: 700,
     border: 0,
@@ -84,46 +84,47 @@ const useStyles = makeStyles({
     marginRight: 15
   }
 });
-
-export default function CustomizedTables() {
-  const classes = useStyles();
-  return (
-    <TableContainer>
-    <Table className={classes.table}>
-    <TableHead>
-          <TableRow>
-            {/*Head da tabela */}
-            <StyledTableCell  align="left">Modelo</StyledTableCell>
-            <StyledTableCell style={{width: '20%' }} align="left">Setor</StyledTableCell>
-            <StyledTableCell style={{width: '10%'}} align="left">Status</StyledTableCell>
-            <StyledTableCell style={{width: '10%'}} align="left">Criado</StyledTableCell>
-            
-          </TableRow>
-        </TableHead>
-      
-        <TableBody>
-           {/*Percorre o array "rows" e adiciona cada elemento na tabela */}
-          {rows.map((row) => (
-            <StyledTableRow key={row.name}>
+class TableAuditoria extends Component{
+  render(){
+    const { classes } = this.props;
+    return (
+      <TableContainer>
+      <Table className={classes.table}>
+      <TableHead>
+            <TableRow>
+              {/*Head da tabela */}
+              <StyledTableCell  align="left">Modelo</StyledTableCell>
+              <StyledTableCell style={{width: '20%' }} align="left">Setor</StyledTableCell>
+              <StyledTableCell style={{width: '10%'}} align="left">Status</StyledTableCell>
+              <StyledTableCell style={{width: '10%'}} align="left">Criado</StyledTableCell>
               
-              <StyledTableCell  align="left" >
-                <div className={classes.modelo}>
-                  <IconButton><InsertDriveFileIcon style={{ color: "#6e7573" }}/></IconButton>
-                  {row.modelo}
-                </div>
-              </StyledTableCell>
-              <StyledTableCell style={{width: '20%'}} align="left">{row.setor}</StyledTableCell>
-              <StyledTableCell style={{width: '10%'}} align="left">{row.status}</StyledTableCell>
-              <StyledTableCell style={{width: '10%'}} align="left">{row.criado}</StyledTableCell>
-              <StyledTableCell style={{width: '25%', minWidth:200}} align="center">{createActions(classes)}</StyledTableCell>
-            </StyledTableRow>
-            
-          ))}
+            </TableRow>
+          </TableHead>
+        
+          <TableBody>
+            {/*Percorre o array "rows" e adiciona cada elemento na tabela */}
+            {rows.map((row) => (
+              <StyledTableRow key={row.name}>
+                
+                <StyledTableCell  align="left" >
+                  <div className={classes.modelo}>
+                    <IconButton><InsertDriveFileIcon style={{ color: "#6e7573" }}/></IconButton>
+                    {row.modelo}
+                  </div>
+                </StyledTableCell>
+                <StyledTableCell style={{width: '20%'}} align="left">{row.setor}</StyledTableCell>
+                <StyledTableCell style={{width: '10%'}} align="left">{row.status}</StyledTableCell>
+                <StyledTableCell style={{width: '10%'}} align="left">{row.criado}</StyledTableCell>
+                <StyledTableCell style={{width: '25%', minWidth:200}} align="center">{createActions(classes)}</StyledTableCell>
+              </StyledTableRow>
+              
+            ))}
 
-        </TableBody>
-      </Table>
-      </TableContainer>
-  );
+          </TableBody>
+        </Table>
+        </TableContainer>
+    )
+  }
 }
 
 {/* função para criar os botões da coluna "ações" */}
@@ -146,3 +147,5 @@ function createActions(classes){
     </div>
   )
 }
+
+export default withStyles(useStyles)(TableAuditoria)
