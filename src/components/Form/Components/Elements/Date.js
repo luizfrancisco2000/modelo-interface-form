@@ -11,7 +11,7 @@ const DateInput = function(props){
     return(
         <div>
             <div>{props.label}</div>
-            <TextField type="date" variant="outlined">
+            <TextField inputProps={{id:props.idQuestion}} type="date" variant="outlined">
             </TextField>
        
         </div>

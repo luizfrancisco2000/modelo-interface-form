@@ -16,7 +16,7 @@ const CheckOption = props =>{
         <FormControlLabel 
             style={{padding:0}} className="areaOption"
             value = {props.label} label={props.label}
-            control = {<Checkbox/>}  
+            control = {<Checkbox inputProps={{id:props.idQuestion}}/>}  
             teste = {"eae"}          
         >
         </FormControlLabel>           

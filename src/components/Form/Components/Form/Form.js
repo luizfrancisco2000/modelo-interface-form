@@ -14,9 +14,9 @@ export default props =>{
             if(resp[i].value != undefined){
                 console.log(resp[i].option)
                 if(resp[i].type !== "radio" && resp[i].type !== "checkbox")
-                    json.push({value:resp[i].value})
+                    json.push({value:resp[i].value, idQuestion:resp[i].id})
                 else if(resp[i].checked)
-                    json.push({value:resp[i].value})
+                    json.push({value:resp[i].value, idQuestion:resp[i].id})
             }
         }
      

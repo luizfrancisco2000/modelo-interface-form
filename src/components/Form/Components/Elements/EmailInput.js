@@ -10,7 +10,7 @@ const EmailInput = function(props){
     return(
         <div>
             <div>{props.label}</div>
-            <TextField className="inputText" placeholder="Seu email">
+            <TextField inputProps={{id:props.idQuestion}} className="inputText" placeholder="Seu email">
             </TextField>
            
         </div>

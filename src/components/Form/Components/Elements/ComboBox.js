@@ -27,7 +27,9 @@ class ComboBox extends Component{
             <div style={{width:'60%'}}> 
 
                 <div >{this.props.label}</div>
-                <TextField style={{width:'60%'}} value = {this.state.selectedValue} select
+                <TextField style={{width:'60%'}} 
+                inputProps={{id:this.props.idQuestion}}
+                value = {this.state.selectedValue} select
                 onChange={this.handleChange}>
                     {Object.values(this.props.options).map(element => {
                         

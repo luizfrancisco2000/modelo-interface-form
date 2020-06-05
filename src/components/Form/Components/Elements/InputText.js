@@ -11,7 +11,7 @@ const InputText = function(props){
     return(
         <div>
             <div>{props.label}</div>
-            <TextField className="inputText" placeholder="Sua resposta">
+            <TextField inputProps={{id:props.idQuestion}} className="inputText" placeholder="Sua resposta">
             </TextField>
            
         </div>

@@ -16,7 +16,8 @@ const RadioOption = props =>{
         <FormControlLabel 
             style={{padding:0}} className="areaOption"
             value = {props.label} label={props.label}
-            control = {<RadioOp/>}            
+            control = {<RadioOp inputProps={{id:props.idQuestion}}/>}   
+                     
         >
 
         </FormControlLabel>  
