@@ -19,16 +19,35 @@ class App extends Component {
     formVisible: false,
     selectDrag: 0,
     enviado: {},
-    topics : []
+  
   }
-  onSave = (event) =>{
-    let t = this.state.topics;
-    t.push(this.state.topic)
 
-    this.setState({topics:t})
-    console.log('carai')
+  converte = () =>{
+    const Json = []
+
+    this.state.topic.forEach(element =>{
+      
+      var questions = []
+      element.questions.forEach(question => {
+        var options = []
+        question.options.forEach(op => options.push({label:op.label, peso:op.peso}))
+        questions.push({
+          label:question.label, 
+          peso:question.peso, 
+          type:question.type, 
+          obrigatorio:question.obrigatorio,
+          options: options
+        })
+      })
+      Json.push({title:element.title, questions:questions})
+    })
+    return Json
+  }
+
+  onSave = (event) =>{
+    const Json = this.converte()
     let e = this.state.enviado;
-    e.topics = this.state.topics;
+    e.topics = this.converte()
     this.setState({eviando:e})
     console.log(this.state.enviado)
     axios.post('/form',this.state.enviado)
@@ -166,7 +185,6 @@ class App extends Component {
     var nQuestion = [...this.state.topic]
     var element = {
       id: this.state.count,
-      label: '',
       title: '',
       questions: [],
       //changeLabel: this.changeLabel,
@@ -178,13 +196,7 @@ class App extends Component {
     this.setState({ count: this.state.count + 1 })
     nQuestion.push(element)
     this.setState({ topic: nQuestion })
-    if(this.state.topics.length!=0){
-      let t = this.state.topics;
-      t.push(this.state.topic)
-  
-      this.setState({topics:t})
-  
-    }
+    
   }
 
   onDrop = (event, id) => {
@@ -220,10 +232,11 @@ class App extends Component {
   }
 
   showForm = () => {
+    
     return (
       <div className="container">
         <FormTitle gerarTitulo={this.gerarTitulo}></FormTitle>
-        <Form form={this.state.topic}></Form>
+        <Form form={this.converte()}></Form>
       </div>
     )
   }

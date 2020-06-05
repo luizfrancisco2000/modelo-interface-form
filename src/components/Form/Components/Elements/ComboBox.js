@@ -10,21 +10,34 @@ import Switch from '@material-ui/core/Switch';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import CloseIcon from '@material-ui/icons/Close';
-const ComboBox = function(props){
 
-    const options = []
+class ComboBox extends Component{
 
-    Object.values(props.options).forEach(element => {
-        console.log(element)
-        options.push({label:element.label, value:element.label})
-    })
-    return(
-        <div style={{width:'60%'}}> 
-            <div >{props.label}</div>
-            <Select placeholder="" options={options}></Select>
+    state = {
+        options: Object.values(this.props.options).map(element => {
+            return {label:element.label, value:element.label}
+        }),
+    }
+    handleChange = (selectedOption) =>{
+        
+        this.setState({selectedValue: selectedOption.value});
+    }
 
-        </div>
-    )
+    render(){
+        console.log(this.state.options)
+        return(
+            <div style={{width:'60%'}}> 
+
+                <div >{this.props.label}</div>
+                    <Select value={this.state.options.filter(({value}) => value === this.state.selectedValue)}
+                        onChange={this.handleChange}
+                        options={this.state.options} placeholder="">
+                    
+                    </Select>
+
+            </div>
+        )
+    }
 }
 
 const ComboBoxOptionBuilder = props =>{
