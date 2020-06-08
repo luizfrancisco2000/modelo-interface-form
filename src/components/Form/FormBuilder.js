@@ -50,19 +50,21 @@ class App extends Component {
 
   onSave = (event) =>{
     const Json = this.converte()
-    this.props.history.push(`/auditorias`)
-    /*    let e = this.state.enviado;
+   
+        let e = this.state.enviado;
     e.topics = this.converte()
     this.setState({eviando:e})
     console.log(this.state.enviado)
     axios.post('/form',this.state.enviado)
     .then(response=>{
+      
       if(response.data){
+        this.props.history.push(`/auditorias`)
         console.log('aaaaaaeeeeeeeeeee  ')
       }
     }).catch(error=>{
       console.log(error)
-    }) */
+    }) 
   }
 
   gerarTitulo=(Json)=>{
