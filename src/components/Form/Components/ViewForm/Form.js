@@ -1,8 +1,8 @@
 import React from 'react'
 import { Topic } from './Topic'
-
+import { elementsView } from './../Form/Elements'
 import './Builder.css'
-
+import Button from "@material-ui/core/Button";
 export default props => {
 
     const sub = (data) => {
@@ -27,16 +27,18 @@ export default props => {
     }
     console.log(props)
     return (
-        <div class="formView">
-            <div className="titleForm">Formulário</div>
-            <form name="form" onSubmit={sub}>
-                {props.form.map((element, i) =>
-                    <div className="container">
-                        <Topic title={element.titulo} count={i} questions={element.questions}></Topic>
-                    </div>
-                )}
-                <input type="submit"></input>
-            </form>
+        <div className="container">
+            <div className="formView">
+                <form name="form" onSubmit={sub}>
+                    {props.form.map((element, i) =>
+                        <div className="container">
+                            <Topic title={element.titulo} questions={props.perguntas} />
+                        </div>
+                    )}
+                    <Button style={{ backgroundColor: '#05daa7', color: 'white'}} type="submit">Salvar</Button>
+                </form>
+            </div>
         </div>
+
     )
 }

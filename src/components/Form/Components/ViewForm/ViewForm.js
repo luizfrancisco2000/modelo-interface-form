@@ -8,7 +8,8 @@ import axios from '../../../../bd/client'
 class ViewForm extends Component {
     state = {
         form: {},
-        topicos: []
+        topicos: [],
+        questions: []
     }
     componentDidMount() {
         var id = this.props.location.state.id;
@@ -28,6 +29,7 @@ class ViewForm extends Component {
                         axios.get('questTopics/' + topico.id)
                             .then(response => {
                                 var perguntas = response.data
+
                                 if (perguntas.length > 0) {
                                     perguntas.forEach((pergunta, id) => {
                                        
@@ -45,6 +47,7 @@ class ViewForm extends Component {
                                         p.push(pergunta)
                                     })
                                 }
+                                this.setState({ questions: p })
                                 topico.questions = p;
                                 t.push(topico)
                                 console.log(topico)
@@ -59,7 +62,7 @@ class ViewForm extends Component {
         return (
             <div>
                 <ViewTitle forms={this.state.form} />
-                <Form form={this.state.topicos}></Form>
+                <Form form={this.state.topicos} perguntas={this.state.questions}></Form>
             </div>
         )
     }
