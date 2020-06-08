@@ -25,17 +25,19 @@ const Select = props => {
 }
 
 export default class question extends Component {
+    
     state = {
         currentSelect: 1,
-        value: '',
+        value: this.props.title.title,
         dataInicio: '',
         dataFim: '',
         setor: '',
         peso: '',
-        descricao: '',
+        descricao: this.props.title.descricao,
         Json: {
             component: 'inputText',
-            label: ''
+            title:'',
+            descricao:''
         },
     }
     onAdd () {
@@ -47,21 +49,21 @@ export default class question extends Component {
     }
 
     change = (event) => {
-        this.state.Json.label = event.target.value
+        this.state.Json.title = event.target.value
         this.setState({ value: event.target.value })
         this. onAdd ()
     }
     changePeso = (event) => {
         this.state.Json.peso = event.target.value
         this.setState({ peso: event.target.value })
-        console.log(this.state.Json)
+        
         this. onAdd ()
 
     }
     changeDescricao = (event) => {
         this.state.Json.descricao = event.target.value
         this.setState({ descricao: event.target.value })
-        console.log(this.state.Json)
+        
         this. onAdd ()
 
     }
@@ -78,6 +80,7 @@ export default class question extends Component {
 
     }
     render() {
+        
         return (
             
             <div className="topic" style={{ marginTop: 45, marginBottom: 20 }}>

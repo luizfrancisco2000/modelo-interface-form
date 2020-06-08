@@ -20,7 +20,10 @@ class App extends Component {
     formVisible: false,
     selectDrag: 0,
     enviado: {},
-    titulo: {}
+    titulo: {
+      titulo:'',
+      descricao:''
+    }
   }
 
   converte = () =>{
@@ -247,7 +250,7 @@ class App extends Component {
     return (
       <div className="container">
         <DragDrop onDragStart={this.selectDrag}></DragDrop>
-        <FormTitle gerarTitulo={this.gerarTitulo}></FormTitle>
+        <FormTitle title = {this.state.titulo} gerarTitulo={this.gerarTitulo}></FormTitle>
         {this.state.topic.map((element, i) => React.createElement(Topic, { ...element, count: i + 1 }))}
 
         <div className="addQuestion">

@@ -135,7 +135,7 @@ const RadioBuilder = props =>{
         <div id={props.id}>
             <div className="areaQuestion" id={props.id}>
                 <TextField 
-                    style={{width:'50%'}} InputProps={{className:'inputBuilder'}} 
+                    style={{width:'60%'}} InputProps={{className:'inputBuilder'}} 
                     placeholder="Insira a pergunta" variant="outlined" value={props.label}
                     onChange={(event) => props.changeLabel(event,props.id,props.idTopic)}/>
                 <TextField 
@@ -154,7 +154,7 @@ const RadioBuilder = props =>{
                     }
                     label="Obrigatório"
                 />
-                <div style={{flex:1}} className="optionQuestion">
+                <div className="optionQuestion">
                     <IconButton className="addOption" size="small" onClick={(event) => addOption(event)}>
                         <AddIcon style={{color:'#05daa7'}}></AddIcon>
                     </IconButton>  
@@ -165,7 +165,7 @@ const RadioBuilder = props =>{
             </div>
             {props.options.map((element,i) => React.createElement(
                 RadioOptionBuilder, {...element, changePeso:changePeso, changeValue:changeValue, delete:deleteOption},null))}
-
+             <div style={{marginBottom:15}}></div>
         </div>
     )
 

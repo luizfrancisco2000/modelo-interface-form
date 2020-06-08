@@ -163,7 +163,7 @@ const CheckBoxBuilder = props => {
             </div>
             {props.options.map((element, i) => React.createElement(
                 CheckOptionBuilder, { ...element, changePeso: changePeso, changeValue: changeValue, delete: deleteOption }, null))}
-
+            
         </div>
     )
 }
