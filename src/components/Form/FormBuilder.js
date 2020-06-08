@@ -12,7 +12,7 @@ import Form from './Components/Form/Form'
 import ViewTitle from './Components/ViewForm/ViewTitle'
 import './Components/Builder.css'
 import axios from './../../bd/client.js'
-
+import { useHistory,withRouter } from "react-router-dom";
 class App extends Component {
   state = {
     topic: [],
@@ -47,7 +47,8 @@ class App extends Component {
 
   onSave = (event) =>{
     const Json = this.converte()
-    let e = this.state.enviado;
+    this.props.history.push(`/auditorias`)
+    /*    let e = this.state.enviado;
     e.topics = this.converte()
     this.setState({eviando:e})
     console.log(this.state.enviado)
@@ -58,7 +59,7 @@ class App extends Component {
       }
     }).catch(error=>{
       console.log(error)
-    })
+    }) */
   }
 
   gerarTitulo=(Json)=>{
@@ -276,4 +277,4 @@ class App extends Component {
 }
 
 
-export default App;
+export default withRouter(App);

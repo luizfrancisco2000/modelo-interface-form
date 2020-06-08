@@ -2,6 +2,7 @@ import React from 'react';
 import { Typography, makeStyles } from '@material-ui/core';
 import clsx from 'clsx';
 import ContainerTable from './Container'
+import { useHistory,withRouter } from "react-router-dom";
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -42,4 +43,4 @@ function Dashboard(props) {
   );
 }
 
-export default Dashboard;
+export default withRouter(Dashboard);
