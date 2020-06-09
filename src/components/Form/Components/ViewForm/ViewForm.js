@@ -29,7 +29,7 @@ class ViewForm extends Component {
                         axios.get('questTopics/' + topico.id)
                             .then(response => {
                                 var perguntas = response.data
-
+                                p = []
                                 if (perguntas.length > 0) {
                                     perguntas.forEach((pergunta, id) => {
                                        

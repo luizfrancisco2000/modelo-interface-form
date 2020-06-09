@@ -27,15 +27,16 @@ const Select = props => {
 export default class question extends Component {
     state = {
         currentSelect: 1,
-        value: '',
+        value: this.props.title.label,
         dataInicio: '',
         dataFim: '',
         setor: '',
         peso: '',
-        descricao: '',
+        descricao: this.props.title.descricao,
         Json: {
             component: 'inputText',
-            label: ''
+            label: this.props.title.label,
+            descricao: this.props.title.descricao
         },
     }
     onAdd () {

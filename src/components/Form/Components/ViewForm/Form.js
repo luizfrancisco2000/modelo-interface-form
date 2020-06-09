@@ -32,7 +32,7 @@ export default props => {
                 <form name="form" onSubmit={sub}>
                     {props.form.map((element, i) =>
                         <div className="container">
-                            <Topic title={element.titulo} questions={props.perguntas} />
+                            <Topic title={element.titulo} questions={element.questions}/>
                         </div>
                     )}
                     <Button style={{ backgroundColor: '#05daa7', color: 'white'}} type="submit">Salvar</Button>

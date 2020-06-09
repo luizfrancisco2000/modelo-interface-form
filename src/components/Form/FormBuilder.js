@@ -21,7 +21,7 @@ class App extends Component {
     selectDrag: 0,
     enviado: {},
     titulo: {
-      titulo:'',
+      label:'',
       descricao:''
     }
   }
@@ -43,6 +43,10 @@ class App extends Component {
           options: options
         })
       })
+      if(questions.peso == ''){
+        
+        questions.peso = null
+      }
       Json.push({title:element.title, questions:questions})
     })
     return Json
@@ -50,7 +54,7 @@ class App extends Component {
 
   onSave = (event) =>{
     const Json = this.converte()
-   
+    this.props.history.push(`/auditorias`)
         let e = this.state.enviado;
     e.topics = this.converte()
     this.setState({eviando:e})
@@ -59,7 +63,7 @@ class App extends Component {
     .then(response=>{
       
       if(response.data){
-        this.props.history.push(`/auditorias`)
+        
         console.log('aaaaaaeeeeeeeeeee  ')
       }
     }).catch(error=>{
@@ -252,6 +256,7 @@ class App extends Component {
     return (
       <div className="container">
         <DragDrop onDragStart={this.selectDrag}></DragDrop>
+        {console.log(this.state.titulo)}
         <FormTitle title = {this.state.titulo} gerarTitulo={this.gerarTitulo}></FormTitle>
         {this.state.topic.map((element, i) => React.createElement(Topic, { ...element, count: i + 1 }))}
 

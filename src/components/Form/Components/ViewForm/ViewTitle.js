@@ -7,7 +7,7 @@ export default props => {
     return (
         <div className="container">
             <div className="formView">
-                <h3>Titulo: {props.forms.title}</h3>
+                <h3>Titulo: {props.forms.label}</h3>
                 <h5>Descrição: {props.forms.descricao}</h5>
                 <div>Administrativo</div>
             </div>
