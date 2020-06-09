@@ -13,6 +13,8 @@ import FileCopyIcon from '@material-ui/icons/FileCopy';
 import PrintIcon from '@material-ui/icons/Print';
 import InsertDriveFileIcon from '@material-ui/icons/InsertDriveFile';
 import axios from '../../bd/client.js'
+import TableFooter from '@material-ui/core/TableFooter';
+import TablePagination from '@material-ui/core/TablePagination';
 import {
   BrowserRouter as Router,
   Link
@@ -82,9 +84,14 @@ const useStyles = themes => ({
     marginRight: 15
   }
 });
+
+
 class TableAuditoria extends Component {
   state = {
-    form: []
+    form: [],
+    page:0,
+    rowsPerPage:5,
+    
   }
 
   componentDidMount() {
@@ -92,13 +99,32 @@ class TableAuditoria extends Component {
       .then(response => {
         this.setState({ form: response.data })
       })
+    this.setState({emptyRows: this.state.rowsPerPage - 
+      Math.min(this.state.rowsPerPage, this.state.form.length - this.state.page * this.state.rowsPerPage)})
   }
+  handleChangePage = (event, nPage) => {
+    console.log(nPage)
+    this.setState({page:nPage});
+  };
+
+  handleChangeRowsPerPage = (event) => {
+    this.setState({rowsPerPage:parseInt(event.target.value, 10)})
+    this.setState({page:0})
+  };
+
   render() {
     const { classes } = this.props;
-    var elements = [];
+    var elementsTable = [];
     const data = new Date();
-    elements.push(this.state.form.map((row) => (
-      <StyledTableRow key={row.titulo}>
+    var rows = [...this.state.form]
+    
+    if(this.state.rowsPerPage > 0){
+      rows = rows.slice(this.state.page * this.state.rowsPerPage, this.state.page * this.state.rowsPerPage + this.state.rowsPerPage)
+    }
+    
+    elementsTable.push(
+      rows.map((row,i) => (
+      <StyledTableRow key={i}>
         {console.log(row.titulo)}
         <StyledTableCell align="left" >
           <div className={classes.modelo}>
@@ -112,7 +138,9 @@ class TableAuditoria extends Component {
         <StyledTableCell style={{ width: '25%', minWidth: 200 }} align="center">{createActions(classes,row.id)}</StyledTableCell>
       </StyledTableRow>
 
-    )))
+    ))
+    )
+    console.log(elementsTable)
     return (
       <TableContainer>
         <Table className={classes.table}>
@@ -129,9 +157,28 @@ class TableAuditoria extends Component {
 
           <TableBody>
             {/*Percorre o array "rows" e adiciona cada elemento na tabela */}
-            {elements}
+            {console.log(elementsTable)}
+            {elementsTable}
 
           </TableBody>
+          <TableFooter>
+          <TableRow style={{width:'100%'}}>
+            <TablePagination
+              rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
+              
+              count={this.state.form.length}
+              rowsPerPage={this.state.rowsPerPage}
+              page={this.state.page}
+              SelectProps={{
+                inputProps: { 'aria-label': 'linhas por página' },
+                native: true,
+              }}
+              onChangePage={this.handleChangePage}
+              onChangeRowsPerPage={this.handleChangeRowsPerPage}
+              
+            />
+          </TableRow>
+        </TableFooter>
         </Table>
       </TableContainer>
     )
