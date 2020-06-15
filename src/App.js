@@ -25,7 +25,7 @@ function App() {
 
   console.log(open)
   return (
-    <Router>
+    <Router basename={'/auditoria'}>
       <Switch>
         <Route path="/" exact>
           <div className="App">
@@ -34,7 +34,6 @@ function App() {
             <Dashboard text={open} />
           </div>
         </Route>
-
         <Route path="/auditorias" exact>
           <div className="App">
             <Header handleDrawerOpen={handleDrawerOpen} text={open} />

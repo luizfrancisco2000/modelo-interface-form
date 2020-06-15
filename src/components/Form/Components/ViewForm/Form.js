@@ -1,15 +1,15 @@
 import React from 'react'
 import { Topic } from './Topic'
-import { elementsView } from './../Form/Elements'
+import { elementsView } from './../ViewForm/Elements'
 import './Builder.css'
 import Button from "@material-ui/core/Button";
 export default props => {
 
     const sub = (data) => {
+        console.log('data'+data)
+        alert('data'+data)
         var json = []
-
         var resp = [...document.form.elements]
-
         for (var i = 0; i < resp.length - 1; i++) {
             if (resp[i].value != undefined) {
                 console.log(resp[i].option)
@@ -25,7 +25,7 @@ export default props => {
         }
         alert('data')
     }
-    console.log(props)
+
     return (
         <div className="container">
             <div className="formView">
