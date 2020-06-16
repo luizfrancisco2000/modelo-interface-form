@@ -24,7 +24,7 @@ const styles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'center',
     flex: 1,
-    minWidth: 250
+    minWidth:250
   },
   btn: {
     marginLeft: '2%',
@@ -39,13 +39,13 @@ const styles = makeStyles((theme) => ({
   },
 
   areaControl: {
-    minWidth: 400,
     display: "flex",
     justifyContent: "center",
     alignItems: "center"
   },
   input: {
     height: 30,
+    marginRight:10
   }
 
 }));
@@ -57,7 +57,7 @@ export default function container(props) {
     <div className={classes.container}>
       <div className={classes.areaTitle}>
         <div className={classes.title}>
-          Auditoria 5s - Admin
+          Registro da Não Conformidade
             </div>
 
         <div className={classes.areaControl}>
@@ -80,8 +80,6 @@ export default function container(props) {
               <AddIcon style={{ color: "white" }} />
             </IconButton>
           </Link>
-          <IconButton size="small" className={classes.btn}> <SortIcon /> </IconButton>
-          <IconButton size="small" className={classes.btn}> <AssignmentIcon /> </IconButton>
         </div>
       </div>
       <Table></Table>

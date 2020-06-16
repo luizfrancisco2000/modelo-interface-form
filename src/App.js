@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Dashboard from './components/Dashboard';
 import Header from './components/Header';
 import Links from './components/Links';
-import Table from './components/Table/index';
+import Table from './components/Auditoria-NCF/index';
 import Form from './components/Form';
 import ViewForm from './components/Form/Components/ViewForm/index';
 import {

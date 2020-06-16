@@ -8,8 +8,9 @@ const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
   content: {
     zIndex: theme.zIndex.drawer + 1,
-    padding: theme.spacing(14),
-    paddingRight:10,
+    paddingTop: theme.spacing(14),
+    paddingLeft: theme.spacing(12),
+    paddingRight: 15,
     paddingBottom:10,
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
@@ -19,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
   contentShift: {
     marginLeft: drawerWidth,
     width: `calc(100% - ${drawerWidth}px)`,
+    paddingLeft:15,
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
