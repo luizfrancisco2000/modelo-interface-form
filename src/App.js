@@ -4,6 +4,7 @@ import Header from './components/Header';
 import Links from './components/Links';
 import Table from './components/Auditoria-NCF/index';
 import Form from './components/Form';
+import FormNCF from './components/Form-NCF';
 import ViewForm from './components/Form/Components/ViewForm/index';
 import {
   BrowserRouter as Router,
