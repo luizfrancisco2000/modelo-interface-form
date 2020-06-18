@@ -22,9 +22,15 @@ const styles = makeStyles((theme) => ({
     marginBottom: 10,
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     flex: 1,
-    minWidth:250
+    minWidth:250,
+    ['@media (max-width:660px)']: { // eslint-disable-line no-useless-computed-key
+      width:385,
+      justifyContent: 'center',
+      alignItems:'center',
+      textAlign:'center'
+    }
   },
   btn: {
     marginLeft: '2%',
