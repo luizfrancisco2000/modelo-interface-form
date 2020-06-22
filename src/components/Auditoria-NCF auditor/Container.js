@@ -22,9 +22,14 @@ const styles = makeStyles((theme) => ({
     marginBottom: 10,
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     flex: 1,
-    minWidth: 250
+    ['@media (max-width:780px)']: { // eslint-disable-line no-useless-computed-key
+      width:385,
+      justifyContent: 'center',
+      alignItems:'center',
+      textAlign:'center'
+    }
   },
   btn: {
     marginLeft: '2%',
@@ -39,13 +44,13 @@ const styles = makeStyles((theme) => ({
   },
 
   areaControl: {
-    minWidth: 400,
     display: "flex",
     justifyContent: "center",
     alignItems: "center"
   },
   input: {
     height: 30,
+    marginRight:10
   }
 
 }));
@@ -57,7 +62,7 @@ export default function container(props) {
     <div className={classes.container}>
       <div className={classes.areaTitle}>
         <div className={classes.title}>
-          Auditoria 5s - Admin
+          Registro da Não Conformidade
             </div>
 
         <div className={classes.areaControl}>
@@ -80,8 +85,6 @@ export default function container(props) {
               <AddIcon style={{ color: "white" }} />
             </IconButton>
           </Link>
-          <IconButton size="small" className={classes.btn}> <SortIcon /> </IconButton>
-          <IconButton size="small" className={classes.btn}> <AssignmentIcon /> </IconButton>
         </div>
       </div>
       <Table></Table>
