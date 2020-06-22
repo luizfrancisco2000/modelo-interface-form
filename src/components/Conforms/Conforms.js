@@ -60,17 +60,10 @@ export default class Conform extends Component {
                 <form>
                     <div className="cards">
                         <h4>Informações Gerais</h4>
-                        <Grid
-                            container
-                            direction="row"
-                        >
-                            <Select style={{ width: '50%' }}  current={this.state.currentSelect} changeSelect={(event) => this.changeType(event)}></Select>
-                            <Select1 style={{ width: '50%' }} current={this.state.currentSelect} changeSelect={(event) => this.changeType(event)}></Select1>
-
-
-                        </Grid>
+                        <label>Setor: Administrativo</label> <label style={{float: "right"}}>Norma: ISO 9000</label> 
                     </div>
                     <div className="cards">
+                    <h5>Descrição do problema</h5>
                         <TextareaAutosize
                             rowsMax={4}
                             aria-label="maximum height"
@@ -78,6 +71,27 @@ export default class Conform extends Component {
                             defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit"
                         />
                     </div>
+                    <div className="cards">
+                    <h5>Disposição Imediata</h5>
+                        <TextareaAutosize
+                            rowsMax={4}
+                            aria-label="maximum height"
+                            className="textArea"
+                            defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+                        />
+                    </div>
+                    <label>Data de entrega:   </label><TextField type="date" style={{ width: '20%' }}InputProps={{ className: "inputQuestion", }} variant="outlined" placeholder="Data de Entrega" />
+                    <div className="cards">
+                    <h5>Plano de Trabalho</h5>
+                        <TextareaAutosize
+                            rowsMax={4}
+                            aria-label="maximum height"
+                            className="textArea"
+                            defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+                        />
+                    </div>
+                    <label>Data de Implementação:   </label><TextField type="date" style={{ width: '20%' }}InputProps={{ className: "inputQuestion", }} variant="outlined" placeholder="Data de Entrega" />
+    
                     <div className="cards buttons">
                     <Button className="buttons">Salvar</Button>
                     <Button className="buttons">Cancelar</Button>
