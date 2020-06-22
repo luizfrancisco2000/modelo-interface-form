@@ -1,58 +1,69 @@
-import React,{Component, useState} from 'react';
+import React,{Component} from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import AddIcon from '@material-ui/icons/Add';
+import Select from 'react-select';
 import TextField from '@material-ui/core/TextField';
-import RadioGroup from "@material-ui/core/RadioGroup";
-import RadioOp from '@material-ui/core/Radio';
-import DeleteIcon from '@material-ui/icons/Delete';
-import CloseIcon from '@material-ui/icons/Close';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import MenuItem from "@material-ui/core/MenuItem";
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
+import CloseIcon from '@material-ui/icons/Close';
 
 import '../Builder.css'
+import axios from '../../../bd/client.js'
 
-const RadioOption = props =>{
-    return(
-        <FormControlLabel 
-            style={{padding:0}} className="areaOption"
-            value = {props.label} label={props.label}
-            control = {<RadioOp inputProps={{id:props.idQuestion}}/>}   
-                     
-        >
+class ComboBox extends Component{
 
-        </FormControlLabel>  
-    )
-}
-
-class Radio extends Component{
     state = {
-        value:''
+        selectedValue:'',
+        options: []
     }
-    
-    handleChange = event => {
-        this.setState({ value: event.target.value });
-    };
-    
+
+    handleChange = (selectedOption) =>{   
+        
+        this.setState({selectedValue: selectedOption.target.value});
+    }
+    componentDidMount() {
+        axios.get('alternativaPergunta/' + this.props.id)
+            .then(response => {
+                console.log(response.data + "   ab")
+                this.setState({options : response.data});
+            }).catch(error => {
+                console.log("erro na parte do alternativa")
+            })
+    }
+
     render(){
+       
         return(
-            <div>
-                <div>{this.props.label}</div>
-                <RadioGroup onChange={this.handleChange} value={this.state.value}>
-                    {this.props.options.map(element => <RadioOption label={element.label}></RadioOption>)}
-                </RadioGroup>
-                
+            <div style={{width:'60%'}}> 
+
+                <div >{this.props.label}</div>
+                <TextField style={{width:'60%'}} 
+                inputProps={{id:this.props.idQuestion}}
+                value = {this.state.selectedValue} select
+                onChange={this.handleChange}>
+                    {Object.values(this.state.options).map(element => {
+                        
+                        return (
+                            <MenuItem key={element.label} value={element.label}>
+                                {element.label}
+                             </MenuItem>
+                        )
+                    })}
+                </TextField>
+                    
             </div>
         )
     }
 }
 
-const RadioOptionBuilder = props =>{
-    
+const ComboBoxOptionBuilder = props =>{
     return(
         <div id={props.id}>
             <div className="areaOption">
-                <RadioOp></RadioOp> 
-                
                 <div className="textOption">
                     <TextField 
                         style={{width:'70%',marginRight:20}} 
@@ -67,15 +78,11 @@ const RadioOptionBuilder = props =>{
             </div>  
         </div>
     
-        
     )
 }
 
-const RadioBuilder = props =>{
-
+const ComboBoxBuilder = props =>{
     const addOption = (event) =>{
-        
-
         var nElement = {
             label: '',
             peso:'',
@@ -135,7 +142,7 @@ const RadioBuilder = props =>{
         <div id={props.id}>
             <div className="areaQuestion" id={props.id}>
                 <TextField 
-                    style={{width:'60%'}} InputProps={{className:'inputBuilder'}} 
+                    style={{width:'50%'}} InputProps={{className:'inputBuilder'}} 
                     placeholder="Insira a pergunta" variant="outlined" value={props.label}
                     onChange={(event) => props.changeLabel(event,props.id,props.idTopic)}/>
                 <TextField 
@@ -164,11 +171,12 @@ const RadioBuilder = props =>{
                 </div>
             </div>
             {props.options.map((element,i) => React.createElement(
-                RadioOptionBuilder, {...element, changePeso:changePeso, changeValue:changeValue, delete:deleteOption},null))}
-             <div style={{marginBottom:15}}></div>
+                ComboBoxOptionBuilder, {...element, changePeso:changePeso, changeValue:changeValue, delete:deleteOption},null))}
+
         </div>
     )
 
+
 }
 
-export {RadioBuilder, Radio}
+export {ComboBox, ComboBoxBuilder}

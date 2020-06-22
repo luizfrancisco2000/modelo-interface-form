@@ -27,15 +27,16 @@ const Select = props => {
 export default class question extends Component {
     state = {
         currentSelect: 1,
-        value: '',
+        value: this.props.title.label,
         dataInicio: '',
         dataFim: '',
         setor: '',
         peso: '',
-        descricao: '',
+        descricao: this.props.title.descricao,
         Json: {
             component: 'inputText',
-            label: ''
+            label: this.props.title.label,
+            descricao: this.props.title.descricao
         },
     }
     onAdd () {
@@ -92,12 +93,12 @@ export default class question extends Component {
                         InputProps={{ className: 'textArea' }} placeholder="Descrição do formulário" variant="outlined" />
                 </div>
                 <div style={{ marginTop: 15, padding: '10px 30px' }}>
-                    <TextField type="date" value={this.state.dataInicio} onChange={(e) => this.changeData(e, 1)} style={{ width: '30%' }} InputProps={{ className: "inputQuestion", }} variant="outlined" placeholder="Título" />
+                   {/* <TextField type="date" value={this.state.dataInicio} onChange={(e) => this.changeData(e, 1)} style={{ width: '30%' }} InputProps={{ className: "inputQuestion", }} variant="outlined" placeholder="Título" />
                     <TextField type="date" value={this.state.dataFim} onChange={(e) => this.changeData(e, 2)} style={{ width: '30%', marginLeft: 15 }} InputProps={{ className: "inputQuestion", }} variant="outlined" placeholder="Título" />
 
                     <TextField value={this.state.peso} onChange={this.changePeso}
                         style={{ width: '25%', marginLeft: 15 }} InputProps={{ className: "inputQuestion", }}
-                        variant="outlined" placeholder="Peso" />
+        variant="outlined" placeholder="Peso" />*/}
                 </div>
             </div>
         )

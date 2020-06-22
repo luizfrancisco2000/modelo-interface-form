@@ -113,7 +113,7 @@ const CheckBoxBuilder = props =>{
         <div id={props.id}>
             <div className="areaQuestion" id={props.id}>
                 <TextField 
-                    style={{width:'50%'}} InputProps={{className:'inputBuilder'}} 
+                    style={{width:'60%'}} InputProps={{className:'inputBuilder'}} 
                     placeholder="Insira a pergunta" variant="outlined" value={props.label}
                     onChange={(event) => props.changeLabel(event,props.id,props.idTopic)}/>
                 <TextField 
@@ -143,7 +143,7 @@ const CheckBoxBuilder = props =>{
             </div>
             {props.options.map((element,i) => React.createElement(
                 CheckOptionBuilder, {...element, changePeso:changePeso, changeValue:changeValue, delete:deleteOption},null))}
-
+            <div style={{marginBottom:15}}></div>
         </div>
     )    
 }

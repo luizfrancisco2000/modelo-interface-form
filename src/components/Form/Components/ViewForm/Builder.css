@@ -7,6 +7,22 @@
 }
 
 .formView{
+    margin-top: 10px;
+    min-height: 100px;
+    width: 100%;
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    border-top: 0;
+}
+.TopicView{
+    margin-top: 10px;
+    min-height: 100px;
+    width: 140%;
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    border-top: 0;
 }
 
 .titleForm{
@@ -16,9 +32,7 @@
 .container{
     display: flex;
     flex-flow: column;
-    margin-left: 30px;
-    
-    width: 65%;
+    margin-left: 50px;
     min-width: 500px;
 }
 
@@ -70,13 +84,6 @@
     float: right;
 }
 
-.optionQuestion{
-    display: flex;
-    flex: 1;
-    justify-content: flex-end;
-    min-width: 66px;
-}
-
 .comboOption{
     display: flex;
     justify-content: center;
@@ -99,11 +106,6 @@
     border-top: 0;
 }
 
-.topicView{
-    background-color: white;
-    padding: 15px;
-    margin-bottom: 15px;
-}
 
 .inputText{
     margin-top: 10px;

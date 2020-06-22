@@ -34,8 +34,8 @@ class TelInputBuilder extends Component{
                     style={{width:'60%'}} InputProps={{className:'inputBuilder'}} 
                     placeholder="Insira a pergunta" variant="outlined" value={this.props.label}
                     onChange={(event) => this.props.changeLabel(event,this.props.id,this.props.idTopic)}/>
+                <div style={{width:'15%'}} className="inputBuilder"></div>
                 
-                <div style={{flex:1}}></div>
                     <FormControlLabel
                         control={
                         <Switch

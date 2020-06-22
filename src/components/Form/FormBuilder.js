@@ -9,9 +9,10 @@ import AppBar from './Components/Form/AppBarForm'
 import { types} from './Components/Form/Elements'
 import DragDrop from './Components/Form/DragDrop'
 import Form from './Components/Form/Form'
+import ViewTitle from './Components/ViewForm/ViewTitle'
 import './Components/Builder.css'
-import axios from './bd/client.js'
-
+import axios from './../../bd/client.js'
+import { useHistory,withRouter } from "react-router-dom";
 class App extends Component {
   state = {
     topic: [],
@@ -19,7 +20,10 @@ class App extends Component {
     formVisible: false,
     selectDrag: 0,
     enviado: {},
-  
+    titulo: {
+      label:'',
+      descricao:''
+    }
   }
 
   converte = () =>{
@@ -39,6 +43,10 @@ class App extends Component {
           options: options
         })
       })
+      if(questions.peso == ''){
+        
+        questions.peso = null
+      }
       Json.push({title:element.title, questions:questions})
     })
     return Json
@@ -46,23 +54,26 @@ class App extends Component {
 
   onSave = (event) =>{
     const Json = this.converte()
-    let e = this.state.enviado;
+    this.props.history.push(`/auditorias`)
+        let e = this.state.enviado;
     e.topics = this.converte()
     this.setState({eviando:e})
     console.log(this.state.enviado)
     axios.post('/form',this.state.enviado)
     .then(response=>{
+      
       if(response.data){
+        
         console.log('aaaaaaeeeeeeeeeee  ')
       }
     }).catch(error=>{
       console.log(error)
-    })
+    }) 
   }
 
   gerarTitulo=(Json)=>{
     this.setState({ enviado: Json })
-
+    this.setState({ titulo: Json })
   }
   changeVisibility = (event) => {
     this.setState({ formVisible: !this.state.formVisible })
@@ -235,7 +246,7 @@ class App extends Component {
     
     return (
       <div className="container">
-        <FormTitle gerarTitulo={this.gerarTitulo}></FormTitle>
+        <ViewTitle forms={this.state.titulo} />
         <Form form={this.converte()}></Form>
       </div>
     )
@@ -245,7 +256,8 @@ class App extends Component {
     return (
       <div className="container">
         <DragDrop onDragStart={this.selectDrag}></DragDrop>
-        <FormTitle gerarTitulo={this.gerarTitulo}></FormTitle>
+        {console.log(this.state.titulo)}
+        <FormTitle title = {this.state.titulo} gerarTitulo={this.gerarTitulo}></FormTitle>
         {this.state.topic.map((element, i) => React.createElement(Topic, { ...element, count: i + 1 }))}
 
         <div className="addQuestion">
@@ -275,4 +287,4 @@ class App extends Component {
 }
 
 
-export default App;
+export default withRouter(App);

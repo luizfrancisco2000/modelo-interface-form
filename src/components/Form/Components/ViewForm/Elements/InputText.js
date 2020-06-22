@@ -32,7 +32,7 @@ class InputTextBuilder extends Component{
                     placeholder="Insira a pergunta" variant="outlined" value={this.props.label}
                     onChange={(event) => this.props.changeLabel(event,this.props.id,this.props.idTopic)}/>
                 <TextField 
-                    style={{width:'15%'}} InputProps={{className:'inputBuilder'}} 
+                    style={{width:'20%'}} InputProps={{className:'inputBuilder'}} 
                     placeholder="Peso" variant="outlined" value={this.props.peso}
                     onChange={(event) => this.props.changePeso(event,this.props.id,this.props.idTopic)}/>
                 
