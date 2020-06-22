@@ -27,6 +27,8 @@ const Topic = props => {
     questions = props.questions;
     return (
         <div className="TopicView">
+            <h3>{props.title}
+            </h3>
             <ExpansionPanel>
                 <ExpansionPanelSummary
                     expandIcon={<ExpandMoreIcon />}

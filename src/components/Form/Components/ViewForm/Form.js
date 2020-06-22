@@ -1,15 +1,14 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Topic } from './Topic'
-import { elementsView } from './../Form/Elements'
+import { elementsView } from './../ViewForm/Elements'
 import './Builder.css'
 import Button from "@material-ui/core/Button";
-export default props => {
-
-    const sub = (data) => {
+import { withRouter } from 'react-router-dom';
+class Form extends Component {
+    sub = (data) => {
         var json = []
-
-        var resp = [...document.form.elements]
-
+        this.props.history.push(`/manuntencao`)
+        /*var resp = [...document.form.elements]
         for (var i = 0; i < resp.length - 1; i++) {
             if (resp[i].value != undefined) {
                 console.log(resp[i].option)
@@ -23,22 +22,25 @@ export default props => {
         for (var i = 0; i < json.length; i++) {
             console.log(json[i])
         }
-        alert('data')
+        alert('data')*/
     }
-    console.log(props)
-    return (
-        <div className="container">
-            <div className="formView">
-                <form name="form" onSubmit={sub}>
-                    {props.form.map((element, i) =>
-                        <div className="container">
-                            <Topic title={element.titulo} questions={element.questions}/>
-                        </div>
-                    )}
-                    <Button style={{ backgroundColor: '#05daa7', color: 'white'}} type="submit">Salvar</Button>
-                </form>
+    render() {
+        return (
+            <div className="container">
+                <div className="formView">
+                    <form name="form" onSubmit={this.sub}>
+                        {this.props.form.map((element, i) =>
+                            <div className="container">
+                                <Topic title={element.titulo} questions={element.questions} />
+                            </div>
+                        )}
+                        <Button style={{ backgroundColor: '#05daa7', color: 'white' }} type="submit">Salvar</Button>
+                    </form>
+                </div>
             </div>
-        </div>
 
-    )
+        )
+    }
 }
+
+export default withRouter(Form)

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Typography, makeStyles } from '@material-ui/core';
 import clsx from 'clsx';
-import AuditoriaForm from './FormAudi'
+import Error from './Error500'
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
   content: {
@@ -30,7 +30,7 @@ export default function Example(props) {
     <main className={clsx(classes.content, {
       [classes.contentShift]: open,
     })}>
-        <AuditoriaForm/>
+        <Error/>
     </main>
 
 

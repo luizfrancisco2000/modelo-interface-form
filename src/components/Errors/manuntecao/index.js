@@ -1,7 +1,8 @@
 import React from 'react';
 import { Typography, makeStyles } from '@material-ui/core';
 import clsx from 'clsx';
-import AuditoriaForm from './FormAudi'
+import { withRouter } from 'react-router-dom';
+
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
   content: {
@@ -22,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function Example(props) {
+function Example(props) {
   const classes = useStyles();
   const open = props.text
 
@@ -30,10 +31,13 @@ export default function Example(props) {
     <main className={clsx(classes.content, {
       [classes.contentShift]: open,
     })}>
-        <AuditoriaForm/>
+      <div className="container">
+      <img src={require('./aviso_manutencao.png')} alt="Minha Figura"/>
+      </div>
     </main>
 
 
   );
 }
 
+export default withRouter(Example)

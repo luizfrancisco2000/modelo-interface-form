@@ -1,0 +1,42 @@
+.cardsP{
+    width: 100%;
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    border-top: 0;
+    margin-Top: 45;
+    margin-Bottom: 20 ;
+}
+
+.cards{
+    width: 100%;
+    background-color: white;
+    border-radius: 2px;
+    border: 1px solid #ccc;
+    border-top: 0;
+    margin-Top: 45;
+    margin-Bottom: 20 ;
+}
+.inputQuestion{
+    width: 99%;
+    height: 40px;
+    margin-right: 10%;
+    display: flex;
+}
+.areaTitle{
+    padding: 10px 30px;
+    padding-top: 15px;
+}
+
+.textArea{
+    min-height: 200px;
+    min-width: 400px;
+}
+.title{
+    text-align: center
+}
+
+.buttons{
+    float: right;
+    align-items: center;
+}

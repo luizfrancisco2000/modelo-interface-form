@@ -4,12 +4,28 @@ import {
 } from "react-router-dom";
 import ViewTitle from './ViewTitle'
 import Form from './Form'
+import FormPDF from './FormPDF'
 import axios from '../../../../bd/client'
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
+import Button from "@material-ui/core/Button";
+import { Grid } from '@material-ui/core';
+
 class ViewForm extends Component {
     state = {
         form: {},
         topicos: [],
         questions: []
+    }
+    printDocument(titulo) {
+        const input = document.getElementById('2'), data = new Date();
+        var doc = new jsPDF('portrait', 'pt', 'a4');
+        
+        doc.fromHTML(input, 40, // x coord
+            40, { pagesplit: true },
+            function (dispose) {
+                doc.save("Formulário "+ titulo + "- " + data.getDate() + "/" + data.getMonth() + "/" + data.getFullYear() + ".pdf");
+            });
     }
     componentDidMount() {
         var id = this.props.location.state.id;
@@ -32,7 +48,7 @@ class ViewForm extends Component {
                                 p = []
                                 if (perguntas.length > 0) {
                                     perguntas.forEach((pergunta, id) => {
-                                       
+
                                         if (pergunta.tipoResposta == "Radio" || pergunta.tipoResposta == "CheckBox" || pergunta.tipoResposta == "ComboBox") {
                                             console.log("true")
                                             console.log(pergunta.id + "   idPergunta")
@@ -56,13 +72,24 @@ class ViewForm extends Component {
                             })
                     })
                 }
+            }).catch(error=>{
+                this.props.history.push(`/500`)
             })
     }
     render() {
         return (
-            <div>
-                <ViewTitle forms={this.state.form} />
-                <Form form={this.state.topicos} perguntas={this.state.questions}></Form>
+            <div >
+                <div id="1">
+                    <ViewTitle forms={this.state.form} />
+                    <Form form={this.state.topicos} perguntas={this.state.questions}></Form>
+                </div>
+                <div id="2" style={{display: "none"}}>
+                    <ViewTitle forms={this.state.form} />
+                    <FormPDF form={this.state.topicos} perguntas={this.state.questions} pdf="true" type="Radio"></FormPDF>
+                </div>
+                <Button onClick={()=>this.printDocument(this.state.form.titulo)} variant="contained" color="primary">
+                    Generate Pdf
+                                </Button>
             </div>
         )
     }

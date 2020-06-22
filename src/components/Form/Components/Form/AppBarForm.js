@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme: Theme) =>
 export default props =>{
     const classes = useStyles()
     return (
-      <div >
+      <div className="container">
         <AppBar className={classes.root}>
           <Toolbar>
             <Typography className={classes.title} variant="h6" >

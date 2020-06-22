@@ -39,7 +39,7 @@ class ComboBox extends Component{
        
         return(
             <div style={{width:'60%'}}> 
-
+            <br></br>
                 <div >{this.props.label}</div>
                 <TextField style={{width:'60%'}} 
                 inputProps={{id:this.props.idQuestion}}
