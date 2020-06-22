@@ -98,7 +98,9 @@ class TableAuditoria extends Component {
     axios.get("/forms")
       .then(response => {
         this.setState({ form: response.data })
-      })
+      }).catch(error=>{
+        this.props.history.push(`/500`)
+    })
     this.setState({emptyRows: this.state.rowsPerPage - 
       Math.min(this.state.rowsPerPage, this.state.form.length - this.state.page * this.state.rowsPerPage)})
   }

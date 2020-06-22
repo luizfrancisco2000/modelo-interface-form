@@ -31,7 +31,7 @@ function App() {
 
   console.log(open)
   return (
-    <Router basename={'/auditorias'}>
+    <Router basename={'/auditoria'}>
       <Switch>
         <Route path="/" exact>
           <div className="App">
@@ -95,12 +95,12 @@ function App() {
         <Route path="/manuntencao" exact>
           <Header handleDrawerOpen={handleDrawerOpen} text={open} />
           <Links handleDrawerClose={handleDrawerClose} text={open} />
-          <Maintenance text={open} />
+          <Error text={open} />
         </Route>
         <Route path="*">
           <Header handleDrawerOpen={handleDrawerOpen} text={open} />
           <Links handleDrawerClose={handleDrawerClose} text={open} />
-          <NotFoundPage text={open} />
+          <Maintenance text={open} />
         </Route>
       </Switch>
     </Router>

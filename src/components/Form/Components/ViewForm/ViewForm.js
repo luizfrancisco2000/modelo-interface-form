@@ -72,6 +72,8 @@ class ViewForm extends Component {
                             })
                     })
                 }
+            }).catch(error=>{
+                this.props.history.push(`/500`)
             })
     }
     render() {
