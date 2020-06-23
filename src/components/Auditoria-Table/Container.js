@@ -62,7 +62,7 @@ export default function container(props) {
     <div className={classes.container}>
       <div className={classes.areaTitle}>
         <div className={classes.title}>
-          Registro da Não Conformidade
+        Auditoria Geral
             </div>
 
         <div className={classes.areaControl}>
