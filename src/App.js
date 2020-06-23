@@ -26,17 +26,22 @@ const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
   content: {
     zIndex: theme.zIndex.drawer + 1,
-    padding: theme.spacing(14),
-    paddingRight:20,
-    paddingBottom:20,
+    
+    paddingTop: theme.spacing(14),
+    // paddingBottom:10,
+    [theme.breakpoints.only('sm')]: {
+      // paddingLeft:20,
+    },
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     })
   },
   contentShift: {
-    marginLeft: 170,
-    width: `calc(100% - ${drawerWidth}px)`,
+    [theme.breakpoints.up('md')]: {
+      marginLeft: 170,
+      width: `calc(100% - ${drawerWidth}px)`,
+    },
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
@@ -64,7 +69,7 @@ function MainContent(props){
     <main className={clsx(classes.content, {
       [classes.contentShift]: props.open,
     })}>
-      <Container maxWidth="xl" disableGutters>
+      <Container maxWidth="xl" disableGutters style={{padding:'0px'}}>
         {props.children}
       </Container>
     </main>
@@ -76,7 +81,7 @@ function SecondContent(props){
     <main className={clsx(classes.contentSecond, {
       [classes.contentSecondShift]: props.open,
     })} >
-      <Container maxWidth="xl" style={{padding:'0px'}}>
+      <Container maxWidth="xl" >
         {props.children}
       </Container>
     </main>
@@ -129,7 +134,7 @@ function App() {
           <div className="App">
             <Header handleDrawerOpen={handleDrawerOpen} text={open} />
             <Links handleDrawerClose={handleDrawerClose} text={open} active='forms' />
-            <SecondContent open={open}><Form/></SecondContent>
+            <MainContent open={open}><Form/></MainContent>
             
           </div>
         </Route>

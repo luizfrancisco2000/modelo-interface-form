@@ -277,7 +277,7 @@ class App extends Component {
   }
   render() {
     return (
-      <div style={{ height: '100%', }}>
+      <div>
         <AppBar changeVisibility={this.changeVisibility}></AppBar>
 
         {this.state.formVisible ? this.showForm() : this.showBuilder()}
