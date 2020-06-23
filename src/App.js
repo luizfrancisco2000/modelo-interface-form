@@ -27,10 +27,11 @@ const useStyles = makeStyles((theme) => ({
   content: {
     zIndex: theme.zIndex.drawer + 1,
     
-    paddingTop: theme.spacing(14),
-    // paddingBottom:10,
+    padding: theme.spacing(12),
+    paddingRight:10,
+    paddingBottom:10,
     [theme.breakpoints.only('sm')]: {
-      // paddingLeft:20,
+      paddingLeft:20,
     },
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
@@ -55,7 +56,10 @@ const useStyles = makeStyles((theme) => ({
     })
   },
   contentSecondShift: {
-    marginLeft: 170,
+    [theme.breakpoints.up('md')]: {
+      marginLeft: 170,
+      width: `calc(100% - ${drawerWidth}px)`,
+    },
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
@@ -69,7 +73,7 @@ function MainContent(props){
     <main className={clsx(classes.content, {
       [classes.contentShift]: props.open,
     })}>
-      <Container maxWidth="xl" disableGutters style={{padding:'0px'}}>
+      <Container maxWidth="xl" disableGutters >
         {props.children}
       </Container>
     </main>
@@ -81,7 +85,7 @@ function SecondContent(props){
     <main className={clsx(classes.contentSecond, {
       [classes.contentSecondShift]: props.open,
     })} >
-      <Container maxWidth="xl" >
+      <Container maxWidth="xl" style={{padding:'0px'}}>
         {props.children}
       </Container>
     </main>
@@ -134,7 +138,7 @@ function App() {
           <div className="App">
             <Header handleDrawerOpen={handleDrawerOpen} text={open} />
             <Links handleDrawerClose={handleDrawerClose} text={open} active='forms' />
-            <MainContent open={open}><Form/></MainContent>
+            <SecondContent open={open}><Form/></SecondContent>
             
           </div>
         </Route>
@@ -199,7 +203,7 @@ function App() {
         <Route path="*">
           <Header handleDrawerOpen={handleDrawerOpen} text={open} />
           <Links handleDrawerClose={handleDrawerClose} text={open} />
-          <NotFoundPage text={open} />
+          <MainContent open={open}><NotFoundPage/></MainContent>
         </Route>
       </Switch>
     </Router>
