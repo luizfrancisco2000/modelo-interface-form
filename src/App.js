@@ -4,14 +4,15 @@ import clsx from 'clsx';
 import Dashboard from './components/Dashboard';
 import Header from './components/Header';
 import Links from './components/Links';
-import Table from './components/Auditoria-NCF/index';
-import Form from './components/Form';
+import Table from './components/Auditoria-NCF chefe/index';
+import Form from './components/Form/FormBuilder';
 import Conforms from './components/Conformidades';
 import Conformidades from './components/Conforms';
 import AuditoriaForm from './components/Auditoria';
 import ViewForm from './components/Form/Components/ViewForm/index';
 import NotFoundPage from './components/Errors/NotFound';
 import Error from './components/Errors/500'
+import AppBar from './components/Form/Components/Form/AppBarForm'
 import Maintenance from './components/Errors/manuntecao'
 import {
   BrowserRouter as Router,
@@ -24,8 +25,8 @@ const useStyles = makeStyles((theme) => ({
   content: {
     zIndex: theme.zIndex.drawer + 1,
     padding: theme.spacing(14),
-    paddingRight:10,
-    paddingBottom:10,
+    paddingRight:20,
+    paddingBottom:20,
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -34,6 +35,20 @@ const useStyles = makeStyles((theme) => ({
   contentShift: {
     marginLeft: 170,
     width: `calc(100% - ${drawerWidth}px)`,
+    transition: theme.transitions.create(['width', 'margin'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  },
+  contentSecond: {
+    zIndex: theme.zIndex.drawer + 1,
+    transition: theme.transitions.create(['width', 'margin'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    })
+  },
+  contentSecondShift: {
+    marginLeft: 170,
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
@@ -47,7 +62,19 @@ function MainContent(props){
     <main className={clsx(classes.content, {
       [classes.contentShift]: props.open,
     })}>
-      <Container maxWidth="xl" style={{minWidth: '510px'}} disableGutters>
+      <Container maxWidth="xl" disableGutters>
+        {props.children}
+      </Container>
+    </main>
+  )
+}
+function SecondContent(props){
+  const classes = useStyles()
+  return(
+    <main className={clsx(classes.contentSecond, {
+      [classes.contentSecondShift]: props.open,
+    })} >
+      <Container maxWidth="xl" style={{padding:'0px'}}>
         {props.children}
       </Container>
     </main>
@@ -100,7 +127,8 @@ function App() {
           <div className="App">
             <Header handleDrawerOpen={handleDrawerOpen} text={open} />
             <Links handleDrawerClose={handleDrawerClose} text={open} active='forms' />
-            <MainContent open={open}><Form /></MainContent>
+            <SecondContent open={open}><Form/></SecondContent>
+            
           </div>
         </Route>
 

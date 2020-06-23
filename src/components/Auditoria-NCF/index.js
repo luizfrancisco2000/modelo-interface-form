@@ -33,13 +33,11 @@ function Dashboard(props) {
   const open = props.text
 
   return (
-    <main className={clsx(classes.content, {
-      [classes.contentShift]: open,
-    })}>
+   
     <Typography>
       <ContainerTable></ContainerTable>
     </Typography>
-    </main>
+    
 
 
   );

@@ -12,13 +12,16 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       position:'relative',
+      marginTop:64,
+      
       background: '#ccc',
-      flexGrow: 1,
+      
     },
     menuButton: {
       marginRight: theme.spacing(2),
     },
     title: {
+      marginLeft:64,
       flexGrow: 1,
     },
   }),
@@ -27,7 +30,7 @@ const useStyles = makeStyles((theme: Theme) =>
 export default props =>{
     const classes = useStyles()
     return (
-      <div className="container">
+      
         <AppBar className={classes.root}>
           <Toolbar>
             <Typography className={classes.title} variant="h6" >
@@ -40,7 +43,7 @@ export default props =>{
             </div>
           </Toolbar>
         </AppBar>
-      </div>
+      
     )
   }
   
