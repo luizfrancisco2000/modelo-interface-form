@@ -4,7 +4,9 @@ import clsx from 'clsx';
 import Dashboard from './components/Dashboard';
 import Header from './components/Header';
 import Links from './components/Links';
-import Table from './components/Auditoria-NCF chefe/index';
+import TableChefe from './components/Auditoria-NCF/index';
+import TableSetor from './components/Auditoria-NCF auditor/index';
+import Table from './components/Auditoria/index';
 import Form from './components/Form/FormBuilder';
 import Conforms from './components/Conformidades';
 import Conformidades from './components/Conforms';
@@ -119,7 +121,7 @@ function App() {
           <div className="App">
             <Header handleDrawerOpen={handleDrawerOpen} text={open} />
             <Links handleDrawerClose={handleDrawerClose} text={open}  active='auditorias' />
-            <MainContent open={open}><Table /></MainContent>
+            <MainContent open={open}><TableChefe /></MainContent>
           </div>
         </Route>
 
@@ -131,13 +133,29 @@ function App() {
             
           </div>
         </Route>
-
+        
         <Route path="/formsAuditoria" exact>
 
           <div className="App">
             <Header handleDrawerOpen={handleDrawerOpen} text={open} />
             <Links handleDrawerClose={handleDrawerClose} text={open} />
             <AuditoriaForm text={open} />
+          </div>
+        </Route>
+        <Route path="/auditoriaNCF-chefe" exact>
+          <div className="App">
+            <Header handleDrawerOpen={handleDrawerOpen} text={open} />
+            <Links handleDrawerClose={handleDrawerClose} text={open} active='auditoriaNCF-chefe'/>
+            <MainContent open={open}> <TableChefe ></TableChefe></MainContent>
+           
+          </div>
+        </Route>
+        <Route path="/auditoriaNCF-setor" exact>
+          <div className="App">
+            <Header handleDrawerOpen={handleDrawerOpen} text={open} />
+            <Links handleDrawerClose={handleDrawerClose} text={open} active='auditoriaNCF-setor'/>
+            <MainContent open={open}> <TableSetor ></TableSetor></MainContent>
+           
           </div>
         </Route>
         <Route path="/conform" exact>

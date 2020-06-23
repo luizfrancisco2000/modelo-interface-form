@@ -166,6 +166,9 @@ function Links(props) {
                         { link: "/d2", title: "Auditoria 5s", name: "d2"},]
                     } />
                     <ListElement text={props.text} link="/forms" active={props.active} name="forms" icon={<Looks5Icon />} title="Auditoria 5s" />
+                    <ListElement text={props.text} link="/auditoriaNCF-chefe" active={props.active} name="auditoriaNCF-chefe" icon={<Looks5Icon />} title="NCF-chefe" />
+                    <ListElement text={props.text} link="/auditoriaNCF-setor" active={props.active} name="auditoriaNCF-setor" icon={<Looks5Icon />} title="NCF-setor" />
+                
                 </List>
             </Drawer>
         </div>
