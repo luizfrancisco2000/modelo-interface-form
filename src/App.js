@@ -51,6 +51,7 @@ const useStyles = makeStyles((theme) => ({
     }),
   },
   contentSecond: {
+    paddingTop: theme.spacing(8),
     zIndex: theme.zIndex.drawer + 1,
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
@@ -60,7 +61,6 @@ const useStyles = makeStyles((theme) => ({
   contentSecondShift: {
     [theme.breakpoints.up('md')]: {
       marginLeft: 170,
-      width: `calc(100% - ${drawerWidth}px)`,
     },
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,

@@ -6,7 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles({
     root:{
         position:'fixed',
-        top:'25%',
+        
         left:'75%'
     },
     icon: {

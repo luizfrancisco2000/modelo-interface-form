@@ -245,7 +245,7 @@ class App extends Component {
   showForm = () => {
     
     return (
-      <div className="container">
+      <div className="containerForm">
         <ViewTitle forms={this.state.titulo} />
         <Form form={this.converte()}></Form>
       </div>
@@ -254,7 +254,7 @@ class App extends Component {
 
   showBuilder = () => {
     return (
-      <div className="container">
+      <div className="containerForm">
         <DragDrop onDragStart={this.selectDrag}></DragDrop>
         {console.log(this.state.titulo)}
         <FormTitle title = {this.state.titulo} gerarTitulo={this.gerarTitulo}></FormTitle>

@@ -13,9 +13,8 @@
     justify-content: center;
     display: flex;
 }
-.container{
-    display: flex;
-    flex-flow: column;
+.containerForm{
+    margin-left: 50px;
     padding-left: 50px;    
     width: 65%;
     min-width: 500px;
