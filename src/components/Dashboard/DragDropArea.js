@@ -47,11 +47,11 @@ const initialState =  {
        columns: {
            'column-1': {
                id: 'column-1',
-               cardIds: ['card-1', 'card-2', 'card-3']
+               cardIds: ['card-1',  'card-3']
            },
            'column-2': {
                id: 'column-2',
-               cardIds: ['card-4']
+               cardIds: ['card-4', 'card-2']
            }
        },
        columnOrder: ['column-1', 'column-2']
