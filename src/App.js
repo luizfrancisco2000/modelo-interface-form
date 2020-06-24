@@ -8,6 +8,8 @@ import TableChefe from './components/Auditoria-NCF/index';
 import TableSetor from './components/Auditoria-NCF auditor/index';
 import Table from './components/Auditoria/index';
 import Form from './components/Form/FormBuilder';
+import FormNCF from './components/Form-NCF/index';
+import FormNCFChefe from './components/Auditoria-NCF chefe/Form';
 import Conforms from './components/Conformidades';
 import Conformidades from './components/Conforms';
 import AuditoriaForm from './components/Auditoria';
@@ -142,7 +144,18 @@ function App() {
             
           </div>
         </Route>
-        
+        <Route path="/form-ncf" exact>
+          <Header handleDrawerOpen={handleDrawerOpen} text={open} />
+          <Links handleDrawerClose={handleDrawerClose} text={open} />
+          <MainContent open={open}><FormNCF/></MainContent>
+        </Route>
+
+        <Route path="/form-ncf-chefe" exact>
+          <Header handleDrawerOpen={handleDrawerOpen} text={open} />
+          <Links handleDrawerClose={handleDrawerClose} text={open} />
+          <MainContent open={open}><FormNCFChefe/></MainContent>
+        </Route>
+
         <Route path="/formsAuditoria" exact>
 
           <div className="App">
@@ -205,6 +218,7 @@ function App() {
           <Links handleDrawerClose={handleDrawerClose} text={open} />
           <MainContent open={open}><NotFoundPage/></MainContent>
         </Route>
+        
       </Switch>
     </Router>
   );

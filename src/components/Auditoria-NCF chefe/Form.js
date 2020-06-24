@@ -1,4 +1,4 @@
-
+ 
 import React from 'react';import { Typography, makeStyles, Divider, Button, Card, TextField, Grid, CardContent } from '@material-ui/core';
 
 const drawerWidth = 240;
@@ -36,7 +36,16 @@ const useStyles = makeStyles((theme) => ({
     marginTop: 30,
   },
   buttons: {
-    marginTop: 30
+    marginTop: 30,
+    display: "flex"
+  },
+  buttonReject: {
+    background: "red",
+    color: '#ffff',
+    "&:hover": {
+        backgroundColor: "red",
+      },
+    fontWeight: 400,
   },
   buttonSave: {
     background: "#05DAA7",
@@ -91,7 +100,7 @@ export default function FormNCF(props) {
 
 
       <Card variant="outlined" className={classes.cardContent}>
-        <CardContent  style={{justifyContent: 'space-between', display: 'flex'}}>
+        <CardContent style={{justifyContent: 'space-between', display: 'flex'}}>
           <Grid container className={classes.gridContent}>
             <Grid item>
               <Typography variant="body1" className={classes.textBody}>
@@ -107,7 +116,7 @@ export default function FormNCF(props) {
           </Grid>
 
 
-          <Grid container  style={{justifyContent: 'flex-end', display: 'flex'}}>
+          <Grid container style={{justifyContent: 'flex-end', display: 'flex'}}>
             <Grid item>
               <Typography variant="body1" className={classes.textBody}>
                 NORMAS:
@@ -165,18 +174,52 @@ export default function FormNCF(props) {
             />
           </form>
         </Grid>
+        
+      </Grid>
+
+      <Typography variant="h2" className={classes.textH2}>
+        Plano de trabalho
+      </Typography>
+
+      <Card variant="outlined" className={classes.cardContent}>
+        <CardContent></CardContent>
+      </Card>
+
+      <Grid container >
+        <Grid item>
+          <Typography variant="h2" className={classes.textH2}>
+            Data de implantação:
+          </Typography>
+        </Grid>
+
+        <Grid item>
+          <form noValidate className={classes.datePicker}>
+            <TextField
+              id="date"
+              type="date"
+              defaultValue="2020-06-17"
+            />
+          </form>
+        </Grid>
+        
       </Grid>
 
       <Divider className={classes.dividerBot} />
-
-      <Grid container className={classes.buttons} justify="flex-end">
-        <Button variant="contained" href="Salvar" className={classes.buttonSave}>
-          Salvar
-      </Button>
-
-        <Button variant="contained" href="Cancelar" className={classes.buttonCancel}>
-          Cancelar
-      </Button>
+      <Grid container justify="space-between" >
+          <Grid item className={classes.buttons} >
+            <Button variant="contained" href="Salvar" className={classes.buttonReject}>
+                Rejeitar
+            </Button>
+          </Grid>
+          <Grid item className={classes.buttons} justify="flex-end">
+            <Button variant="contained" href="Salvar" className={classes.buttonSave}>
+                Salvar
+            </Button>
+            <Button variant="contained" href="Cancelar" className={classes.buttonCancel}>
+                Cancelar
+            </Button>    
+          </Grid>
+        
       </ Grid>
 
     </main>
