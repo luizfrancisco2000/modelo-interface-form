@@ -6,13 +6,15 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import EditIcon from '@material-ui/icons/Edit';
 import IconButton from '@material-ui/core/IconButton';
 import VisibilityIcon from '@material-ui/icons/Visibility';
-import CancelIcon from '@material-ui/icons/Cancel';
+import FileCopyIcon from '@material-ui/icons/FileCopy';
 import PrintIcon from '@material-ui/icons/Print';
+import InsertDriveFileIcon from '@material-ui/icons/InsertDriveFile';
+import axios from '../../bd/client.js'
 import TableFooter from '@material-ui/core/TableFooter';
 import TablePagination from '@material-ui/core/TablePagination';
-import AssignmentIcon from '@material-ui/icons/Assignment';
 import {
   BrowserRouter as Router,
   Link
@@ -30,7 +32,7 @@ const StyledTableCell = withStyles((theme) => ({
   body: {
     borderTop: '1px solid #E8E8E8',
     borderBottom: '1px solid #E8E8E8',
-    height: 48,
+    height: 20,
     padding: 0,
     fontSize: 14,
     /**Aplica as bordas arredondadas para as pontas da linha */
@@ -62,25 +64,14 @@ const StyledTableRow = withStyles((theme) => ({
 }))(TableRow);
 
 /*retorna um objeto contendo os campos de cada coluna */
-function createData(nome, setor, status, classes) {
-  const data = new Date()
-  return (
-    <StyledTableRow>
-      <StyledTableCell style={{ width: '20%' }} align="left">{nome}</StyledTableCell>
-      <StyledTableCell  style={{ width: '15%' }} align="left">{setor}</StyledTableCell>
-      <StyledTableCell  style={{ width: '15%' }} align="left">{data.getDay() + '/' + data.getMonth() + '/' + data.getFullYear()}</StyledTableCell>
-      <StyledTableCell style={{ width: '15%' }} align="left">{status}</StyledTableCell>
-      <StyledTableCell  style={{ width: '15%' }} align="left">{data.getDay() + '/' + data.getMonth() + '/' + data.getFullYear()}</StyledTableCell>
-      <StyledTableCell  style={{ width: '15%' }} align="left">{createActions(status, classes)}</StyledTableCell>
-    
-    </StyledTableRow>
-  )
+function createData(modelo, setor, status, criado) {
+  return { modelo, setor, status, criado };
 }
 
 
 const useStyles = themes => ({
   table: {
-    minWidth:650,
+    minWidth: 700,
     border: 0,
     borderCollapse: 'separate',
     borderSpacing: '0 10px'
@@ -104,7 +95,10 @@ class TableAuditoria extends Component {
   }
 
   componentDidMount() {
-    
+    axios.get("http://localhost:3001/forms")
+      .then(response => {
+        this.setState({ form: response.data })
+      })
     this.setState({emptyRows: this.state.rowsPerPage - 
       Math.min(this.state.rowsPerPage, this.state.form.length - this.state.page * this.state.rowsPerPage)})
   }
@@ -127,11 +121,25 @@ class TableAuditoria extends Component {
     if(this.state.rowsPerPage > 0){
       rows = rows.slice(this.state.page * this.state.rowsPerPage, this.state.page * this.state.rowsPerPage + this.state.rowsPerPage)
     }
+    
+    elementsTable.push(
+      rows.map((row,i) => (
+      <StyledTableRow key={i}>
+        {console.log(row.titulo)}
+        <StyledTableCell align="left" >
+          <div className={classes.modelo}>
+            <IconButton><InsertDriveFileIcon style={{ color: "#6e7573" }} /></IconButton>
+            {row.titulo}
+          </div>
+        </StyledTableCell>
+        <StyledTableCell style={{ width: '20%' }} align="left">Administrativo</StyledTableCell>
+        <StyledTableCell style={{ width: '10%' }} align="left">Ativo</StyledTableCell>
+        <StyledTableCell style={{ width: '10%' }} align="left">{data.getDay() + '/' + data.getMonth() + '/' + data.getFullYear()}</StyledTableCell>
+        <StyledTableCell style={{ width: '25%', minWidth: 200 }} align="center">{createActions(classes,row.id)}</StyledTableCell>
+      </StyledTableRow>
 
-    elementsTable.push(createData('Usuário-Auditor', 'Compras', 'Aguardando DI',classes))
-    elementsTable.push(createData('Usuário-Auditor', 'Compras', 'Aguardando diagnóstico',classes))
-    elementsTable.push(createData('Usuário-Auditor', 'Compras', 'Aguardando análise',classes))
-    elementsTable.push(createData('Usuário-Auditor', 'Compras', 'Avaliado',classes))
+    ))
+    )
     console.log(elementsTable)
     return (
       <TableContainer>
@@ -139,17 +147,17 @@ class TableAuditoria extends Component {
           <TableHead>
             <TableRow>
               {/*Head da tabela */}
-              <StyledTableCell style={{ width: '20%' }} align="left">Nome</StyledTableCell>
-              <StyledTableCell style={{ width: '15%' }} align="left">Setor</StyledTableCell>
-              <StyledTableCell style={{ width: '15%' }} align="left">Data de abertura</StyledTableCell>
-              <StyledTableCell style={{ width: '15%' }} align="left">Status</StyledTableCell>
-              <StyledTableCell style={{ width: '10%' }} align="left">Última atualização</StyledTableCell>
+              <StyledTableCell align="left">Modelo</StyledTableCell>
+              <StyledTableCell style={{ width: '20%' }} align="left">Setor</StyledTableCell>
+              <StyledTableCell style={{ width: '10%' }} align="left">Status</StyledTableCell>
+              <StyledTableCell style={{ width: '10%' }} align="left">Criado</StyledTableCell>
+
             </TableRow>
           </TableHead>
 
           <TableBody>
             {/*Percorre o array "rows" e adiciona cada elemento na tabela */}
-            
+            {console.log(elementsTable)}
             {elementsTable}
 
           </TableBody>
@@ -158,11 +166,12 @@ class TableAuditoria extends Component {
             <TablePagination
               rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
               labelRowsPerPage = 'linhas por página: '
-              labelDisplayedRows={({ from, to, count }) => `1-4 de 4`}
+              labelDisplayedRows={({ from, to, count }) => `${from}-${to} de ${count}`}
               count={this.state.form.length}
               rowsPerPage={this.state.rowsPerPage}
               page={this.state.page}
               SelectProps={{
+                inputProps: { 'aria-label': 'linhas por página' },
                 native: true,
               }}
               onChangePage={this.handleChangePage}
@@ -177,23 +186,25 @@ class TableAuditoria extends Component {
   }
 }
 {/* função para criar os botões da coluna "ações" */ }
-function createActions(status,classes) {
-  var titulo=''
-  if(status == 'Aguardando DI') titulo = 'Registrar DI'
-  if(status == 'Aguardando diagnóstico') titulo = 'Registrar diagnóstico'
-  if(status == 'Aguardando análise') titulo = 'Avaliar plano de trabalho'
-  if(status == 'Avaliado') titulo = 'Abrir'
+function createActions(classes,id) {
+
   return (
     <div>
+      <IconButton className={classes.btn} size="small" title="Editar">
+        <EditIcon style={{ color: "#6e7573" }} />
+      </IconButton>
+      <Link to={
+  {pathname: '/formResp',
+  state: { id: id }}
+}><IconButton className={classes.btn} size="small" title="Visualizar">
+        <VisibilityIcon style={{ color: "#6e7573" }} />
+      </IconButton></Link>
+      <IconButton className={classes.btn} size="small" title="Copiar">
+        <FileCopyIcon style={{ color: "#6e7573" }} />
+      </IconButton>
       <IconButton className={classes.btn} size="small" title="Imprimir">
         <PrintIcon style={{ color: "#6e7573" }} />
       </IconButton>
-      
-      <IconButton className={classes.btn} size="small" title={titulo}>
-        <AssignmentIcon style={{ color: "#6e7573" }} />
-      </IconButton>
-    
-      
     </div>
   )
 }

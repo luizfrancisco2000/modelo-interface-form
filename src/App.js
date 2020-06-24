@@ -4,9 +4,9 @@ import clsx from 'clsx';
 import Dashboard from './components/Dashboard';
 import Header from './components/Header';
 import Links from './components/Links';
-import TableChefe from './components/Auditoria-NCF/index';
+import TableChefe from './components/Auditoria-NCF chefe/index';
 import TableSetor from './components/Auditoria-NCF auditor/index';
-import Table from './components/Auditoria/index';
+import TableAuditoria from './components/Auditoria-Table/index';
 import Form from './components/Form/FormBuilder';
 import FormNCF from './components/Form-NCF/index';
 import FormNCFChefe from './components/Auditoria-NCF chefe/Form';
@@ -132,7 +132,7 @@ function App() {
           <div className="App">
             <Header handleDrawerOpen={handleDrawerOpen} text={open} />
             <Links handleDrawerClose={handleDrawerClose} text={open}  active='auditorias' />
-            <MainContent open={open}><TableChefe /></MainContent>
+            <MainContent open={open}><TableAuditoria/></MainContent>
           </div>
         </Route>
 
