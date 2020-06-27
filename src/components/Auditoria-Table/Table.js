@@ -95,7 +95,7 @@ class TableAuditoria extends Component {
   }
 
   componentDidMount() {
-    axios.get("http://localhost:3001/forms")
+    axios.get("/forms")
       .then(response => {
         this.setState({ form: response.data })
       })
