@@ -186,7 +186,7 @@ export default function FormNCF(props) {
                 </CardContent>
             </Card>
             <Typography variant="h2" className={classes.textH2}>
-                Informações do Template
+                Informações da Auditoria:
         </Typography>
             <Card variant="outlined" className={classes.cardContent}>
                 <CardContent>
