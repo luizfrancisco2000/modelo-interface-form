@@ -221,11 +221,11 @@ export default function FormNCF(props) {
 
                 </CardContent>
             </Card>
-
-
-            <Divider className={classes.dividerBot} />
-            <div className="cards">
-                <h4>Confirmação de Login    </h4>
+            <Typography variant="h2" className={classes.textH2}>
+                Confirmação de Login
+      </Typography>
+            <Card variant="outlined" className={classes.cardContent}>
+                <CardContent>
 
                 <TextField type="text" style={{ width: '20%' }} style={{ width: '20%' }} InputProps={{ className: "inputQuestion", }} variant="outlined" placeholder="Login" />
                 <TextField type="password" style={{ width: '20%' }} style={{ width: '20%' }} InputProps={{ className: "inputQuestion", }} variant="outlined" placeholder="Senha" />
@@ -238,7 +238,12 @@ export default function FormNCF(props) {
                     }
                     label="Ativo"
                 />
-            </div>
+                </CardContent>
+            </Card>
+
+
+            <Divider className={classes.dividerBot} />
+
 
             <Grid container className={classes.buttons} justify="flex-end">
                 <Button variant="contained" href="Salvar" className={classes.buttonSave}>

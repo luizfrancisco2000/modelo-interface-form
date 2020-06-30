@@ -110,8 +110,8 @@ function ListElement(props){
                     <ListItemIcon >
                      <InsertDriveFileOutlinedIcon/>
                     </ListItemIcon>
-                    <ListItemText primary="Sublinks" />
-                  </ListItem>
+                    <ListItemText primary="Criar Auditoria" />
+                    </ListItem>
                         </Link>
                     )
                 })}
@@ -162,8 +162,7 @@ function Links(props) {
                     <ListElement text={props.text} link="/" active={props.active} name="home" icon={<DashboardIcon />} title="Dashboard"></ListElement>
                     <ListElement text={props.text} link="/auditorias" active={props.active} name="auditorias" icon={<StorageIcon />} title="Auditorias"
                     sublinks={
-                        [{ link: "/d1", title: "Auditoria 5s", name: "d1"},
-                        { link: "/d2", title: "Auditoria 5s", name: "d2"},]
+                        [{ link: "/formsAuditoria", title: "Auditorias", name: "Auditorias"}]
                     } />
                     <ListElement text={props.text} link="/forms" active={props.active} name="forms" icon={<Looks5Icon />} title="Auditoria 5s" />
                     <ListElement text={props.text} link="/auditoriaNCF-chefe" active={props.active} name="auditoriaNCF-chefe" icon={<Looks5Icon />} title="NCF-chefe" />

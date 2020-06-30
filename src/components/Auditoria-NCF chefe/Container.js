@@ -80,7 +80,7 @@ export default function container(props) {
             }}
           />
 
-          <Link to="forms">
+          <Link to="conforms">
             <IconButton style={{ backgroundColor: '#05daa7' }} size="small" className={classes.btn}>
               <AddIcon style={{ color: "white" }} />
             </IconButton>

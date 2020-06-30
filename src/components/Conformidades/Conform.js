@@ -139,8 +139,8 @@ export default function FormNCF(props) {
         </Typography>
             <Card variant="outlined" className={classes.cardContent}>
                 <CardContent>
-                    <Select style={{ width: '50%' }} current={this.state.currentSelect} changeSelect={(event) => this.changeType(event)}></Select>
-                    <Select1 style={{ width: '50%' }} current={this.state.currentSelect} changeSelect={(event) => this.changeType(event)}></Select1>
+                    <Select style={{ width: '50%' }} ></Select>
+                    <Select1 style={{ width: '50%' }}></Select1>
                 </CardContent>
 
             </Card>
