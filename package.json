@@ -2,6 +2,7 @@
   "name": "dash",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://ecm.flex-am.com.br/auditorias",
   "dependencies": {
     "@material-ui/core": "^4.10.0",
     "@material-ui/icons": "^4.9.1",
@@ -9,10 +10,23 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "axios": "^0.19.2",
+    "chart.js": "^2.9.3",
     "clsx": "^1.1.0",
+    "fg-loadcss": "^3.1.0",
+    "html2canvas": "^1.0.0-rc.5",
+    "jspdf": "^1.5.3",
     "react": "^16.13.1",
+    "react-beautiful-dnd": "^13.0.0",
+    "react-chartjs-2": "^2.9.0",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1"
+    "react-dropzone": "^11.0.1",
+    "react-icons": "^3.10.0",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "^3.4.1",
+    "react-select": "^3.1.0",
+    "react-slide-toggle": "^0.3.5",
+    "typeface-roboto": "0.0.75"
   },
   "scripts": {
     "start": "react-scripts start",

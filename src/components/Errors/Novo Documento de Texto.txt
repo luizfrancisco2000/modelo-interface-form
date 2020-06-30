@@ -1,0 +1,110 @@
+import React, { useState } from 'react';
+import Dashboard from './components/Dashboard';
+import Header from './components/Header';
+import Links from './components/Links';
+import Table from './components/Table/index';
+import Form from './components/Form';
+import Conforms from './components/Conformidades';
+import Conformidades from './components/Conforms';
+import AuditoriaForm from './components/Auditoria';
+import ViewForm from './components/Form/Components/ViewForm/index';
+import NotFoundPage from './components/Errors/NotFound';
+import Error from './components/Errors/500'
+import Maintenance from './components/Errors/manuntecao'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from "react-router-dom";
+
+
+function App() {
+  const [open, setOpen] = useState(false);
+  const handleDrawerOpen = () => {
+    setOpen(true);
+  };
+
+  const handleDrawerClose = () => {
+    setOpen(false);
+  };
+
+
+  console.log(open)
+  return (
+    <Router basename={'/auditoria'}>
+      <Switch>
+        <Route path="/" exact>
+          <div className="App">
+            <Header handleDrawerOpen={handleDrawerOpen} text={open} />
+            <Links handleDrawerClose={handleDrawerClose} text={open} />
+            <Dashboard text={open} />
+          </div>
+        </Route>
+        <Route path="/auditorias" exact>
+          <div className="App">
+            <Header handleDrawerOpen={handleDrawerOpen} text={open} />
+            <Links handleDrawerClose={handleDrawerClose} text={open} />
+            <Table text={open} />
+          </div>
+        </Route>
+
+        <Route path="/forms" exact>
+          <div className="App">
+            <Header handleDrawerOpen={handleDrawerOpen} text={open} />
+            <Links handleDrawerClose={handleDrawerClose} text={open} />
+            <Form text={open} />
+          </div>
+        </Route>
+
+        <Route path="/formsAuditoria" exact>
+
+          <div className="App">
+            <Header handleDrawerOpen={handleDrawerOpen} text={open} />
+            <Links handleDrawerClose={handleDrawerClose} text={open} />
+            <AuditoriaForm text={open} />
+          </div>
+        </Route>
+        <Route path="/conform" exact>
+
+          <div className="App">
+            <Header handleDrawerOpen={handleDrawerOpen} text={open} />
+            <Links handleDrawerClose={handleDrawerClose} text={open} />
+            <Conformidades text={open} />
+          </div>
+        </Route>
+        <Route path="/conforms" exact>
+
+          <div className="App">
+            <Header handleDrawerOpen={handleDrawerOpen} text={open} />
+            <Links handleDrawerClose={handleDrawerClose} text={open} />
+            <Conforms text={open} />
+          </div>
+        </Route>
+        <Route path="/formResp" exact>
+          <div className="App">
+            <Header handleDrawerOpen={handleDrawerOpen} text={open} />
+            <Links handleDrawerClose={handleDrawerClose} text={open} />
+            <ViewForm text={open} />
+          </div>
+        </Route>
+        <Route path="/500" exact>
+          <Header handleDrawerOpen={handleDrawerOpen} text={open} />
+          <Links handleDrawerClose={handleDrawerClose} text={open} />
+          <Error text={open} />
+        </Route>
+        <Route path="/manuntencao" exact>
+          <Header handleDrawerOpen={handleDrawerOpen} text={open} />
+          <Links handleDrawerClose={handleDrawerClose} text={open} />
+          <Error text={open} />
+        </Route>
+        <Route path="*">
+          <Header handleDrawerOpen={handleDrawerOpen} text={open} />
+          <Links handleDrawerClose={handleDrawerClose} text={open} />
+          <Maintenance text={open} />
+        </Route>
+      </Switch>
+    </Router>
+  );
+}
+
+export default App;

@@ -1,0 +1,27 @@
+.cardsP{
+    width: 100%;
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    border-top: 0;
+}
+
+.cards{
+    width: 100%;
+    background-color: white;
+    border-radius: 5px;
+    border: 2px solid #ccc;
+    border-top: 0;
+}
+.textArea{
+    min-height: 200px;
+    min-width: 400px;
+}
+.title{
+    text-align: center
+}
+
+.buttons{
+    float: right;
+    align-items: center;
+}

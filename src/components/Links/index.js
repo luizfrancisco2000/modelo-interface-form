@@ -5,22 +5,34 @@ import StorageIcon from '@material-ui/icons/Storage';
 import Looks5Icon from '@material-ui/icons/Looks5';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import IconButton from '@material-ui/core/IconButton'
+import Collapse from '@material-ui/core/Collapse';
+import IconButton from '@material-ui/core/IconButton';
+import InsertDriveFileOutlinedIcon from '@material-ui/icons/InsertDriveFileOutlined';
 import clsx from 'clsx';
+import {
+    BrowserRouter as Router,
+    Link
+} from "react-router-dom";
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
     paper: {
-        background: '#05DAA7'
+        background: '#05DAA7',
+        border: 'none',
     },
     list: {
-        color: '#303337'
+        color: '#303337',
+        marginLeft: '6px',
+        fontStyle: 'none',
+        outline: 'none',
+        textDecoration: 'none',
     },
     drawer: {
         width: drawerWidth,
         flexShrink: 0,
         whiteSpace: 'nowrap',
+        overflow: 'hidden',
     },
     drawerOpen: {
         width: drawerWidth,
@@ -36,8 +48,8 @@ const useStyles = makeStyles((theme) => ({
         }),
         overflowX: 'hidden',
         width: theme.spacing(7) + 1,
-        [theme.breakpoints.up('sm')]: {
-            width: theme.spacing(9) + 1,
+        [theme.breakpoints.only('sm')]: {
+            display: 'none',
         },
     },
     toolbar: {
@@ -48,14 +60,76 @@ const useStyles = makeStyles((theme) => ({
         // necessary for content to be below app bar
         ...theme.mixins.toolbar,
     },
+    activeIcon: {
+        backgroundColor: '#fff',
+        // marginRight: '-5px',
+        
+        borderRadius: '25px 0 0 25px',
+    },
+    link: {
+        textDecoration: 'none',
+        color: '#303337',
+    }
 }));
+
+function ListElement(props){
+    const classes = useStyles();
+    const theme = useTheme();
+    const open = props.text; 
+    var mainActive = false;
+    if(props.sublinks){
+        props.sublinks.forEach(item=>{
+            if(item.name == props.active) mainActive = true;
+        })
+    }    
+
+    return(
+        <div>
+
+        <Link to={props.link} className={classes.link}>
+            <ListItem button 
+            className={props.active==props.name?
+            classes.activeIcon
+            :mainActive && !open? classes.activeIcon 
+            :null}>
+                <ListItemIcon>
+                    {props.icon}
+                </ListItemIcon>
+                <ListItemText className={[classes.listItem, classes.links]}>{props.title}</ListItemText>
+            </ListItem>
+        </Link>
+            {props.sublinks?
+                <Collapse in={open} timeout="auto" unmountOnExit>
+                <List component="div" disablePadding>
+                { props.sublinks.map(item => {
+                    return (
+                        <Link to={item.link} className={classes.link}>
+                            <ListItem button 
+                            style={{paddingLeft: '30px'}}
+                            className={props.active==item.name?classes.activeIcon:null}>
+                    <ListItemIcon >
+                     <InsertDriveFileOutlinedIcon/>
+                    </ListItemIcon>
+                    <ListItemText primary="Criar Auditoria" />
+                    </ListItem>
+                        </Link>
+                    )
+                })}
+                  
+                </List>
+              </Collapse>
+               
+            :null}
+        </div>
+      
+    )
+    
+}
 
 function Links(props) {
     const classes = useStyles();
     const theme = useTheme();
     const open = props.text
-
-   
 
     return (
         <div>
@@ -70,40 +144,31 @@ function Links(props) {
                         [classes.drawerOpen]: open,
                         [classes.drawerClose]: !open,
                     }, classes.paper),
-                    
+
                 }}
+            
             >
 
                 <div className={classes.toolbar}>
-                <Typography>Flex Industries</Typography>
+                    <Typography>Flex Industries</Typography>
                     <IconButton onClick={props.handleDrawerClose}>
                         {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
                     </IconButton>
                 </div>
-                
+
                 <Divider />
 
                 <List className={classes.list}>
-                    <ListItem  button >
-                        <ListItemIcon>
-                            <DashboardIcon />
-                        </ListItemIcon>
-                        <ListItemText className={classes.listItem}>Dashboard</ListItemText>
-                    </ListItem>
-
-                    <ListItem button>
-                        <ListItemIcon>
-                            <StorageIcon />
-                        </ListItemIcon>
-                        <ListItemText primary="Auditorias"></ListItemText>
-
-                    </ListItem>
-                    <ListItem button>
-                        <ListItemIcon>
-                            <Looks5Icon />
-                        </ListItemIcon>
-                        <ListItemText primary="Auditoria 5s"></ListItemText>
-                    </ListItem>
+                    <ListElement text={props.text} link="/" active={props.active} name="home" icon={<DashboardIcon />} title="Dashboard"></ListElement>
+                    <ListElement text={props.text} link="/auditorias" active={props.active} name="auditorias" icon={<StorageIcon />} title="Auditorias"
+                    sublinks={
+                        [{ link: "/formsAuditoria", title: "Auditorias", name: "Auditorias"}]
+                    } />
+                    <ListElement text={props.text} link="/forms" active={props.active} name="forms" icon={<Looks5Icon />} title="Auditoria 5s" />
+                    <ListElement text={props.text} link="/auditoriaNCF-chefe" active={props.active} name="auditoriaNCF-chefe" icon={<Looks5Icon />} title="NCF Chefe" />
+                    <ListElement text={props.text} link="/auditoriaNCF-setor" active={props.active} name="auditoriaNCF-setor" icon={<Looks5Icon />} title="NCF Auditor" />
+                    <ListElement text={props.text} link="/form-ncf-chefe" active={props.active} name="form-ncf-chefe" icon={<Looks5Icon />} title="Form NCF Chefe" />
+                    <ListElement text={props.text} link="/form-ncf" active={props.active} name="form-ncf" icon={<Looks5Icon />} title="Form NCF Auditor" />
                 </List>
             </Drawer>
         </div>

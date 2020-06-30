@@ -1,0 +1,172 @@
+.areaQuestion{
+    margin-bottom: 10px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    height: 40px;
+}
+
+.formView{
+}
+
+.titleForm{
+    justify-content: center;
+    display: flex;
+}
+.containerForm{
+    margin-left: 50px;
+    padding-left: 50px;    
+    width: 65%;
+    min-width: 500px;
+}
+
+.addOption{
+    background-color:white !important;
+    border: 3px solid #05daa7 !important;   
+}
+
+.select{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: seagreen !important;
+}
+
+.areaAdd{
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.navbar{
+    width: 100%;
+    height: 40px;
+    background-color: #BEE3E8;
+}
+
+.textOption{
+    display: flex;
+    flex: 1;
+    align-items: flex-end;
+    
+}
+.areaOption{
+    flex:1;
+    display: flex;
+    align-items: center;
+    height: 40px;
+    padding-top: 10px;
+}
+.peso{
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-right: 20px;
+    width: 80px;
+    height: 30px;
+}
+.delete{
+    float: right;
+}
+
+.optionQuestion{
+    display: flex;
+    flex: 1;
+    justify-content: flex-end;
+    min-width: 66px;
+}
+
+.comboOption{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 5px;
+}
+.options{
+    border-top: 1px solid black;
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 15px;
+}
+.topic{
+    margin-top: 10px;
+    min-height: 100px;
+    width: 100%;
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    border-top: 0;
+}
+
+.topicView{
+    background-color: white;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.inputText{
+    margin-top: 10px;
+    width: 60%;
+}
+
+.topicTitle{
+    padding: 15px;
+    padding-bottom: 5px;
+}
+
+.topicTitle div{
+    padding: 0 auto;
+}
+
+.inputBuilder{
+    margin-right: 10px;
+    height: 40px;
+}
+
+
+.questions{
+    padding: 15px;
+    padding-top: 5px;
+}
+
+.addQuestion{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.textArea{
+    width: 100%;
+    height: 80px;
+}
+
+.inputQuestion{
+    width: 99%;
+    height: 40px;
+    margin-right: 10%;
+    display: flex;
+}
+
+.inputOption{
+    height: 30px;
+}
+.areaTitle{
+    padding: 10px 30px;
+    padding-top: 15px;
+}
+.questionIcon{
+    margin-top: 10px;
+    justify-content: center;
+    display:flex;
+    align-items: center;
+}
+
+.areaSave{
+    display: flex;
+    justify-content: flex-end;
+    
+}
+
+.areaSave Button{
+    width: 100px;
+    margin-left: 15px
+}
