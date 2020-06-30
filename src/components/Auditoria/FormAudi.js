@@ -1,16 +1,17 @@
-import React, { Component } from 'react'
-import axios from '../../bd/client'
-import TextField from '@material-ui/core/TextField';
+import React from 'react';
+import { Typography, makeStyles, Divider, Button, Card, TextField, Grid, CardContent } from '@material-ui/core';
+import clsx from 'clsx';
+
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
-import Grid from '@material-ui/core/Grid';
-import MenuItem from "@material-ui/core/MenuItem";
-import Button from "@material-ui/core/Button";
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import './builder.css'
 import Switch from '@material-ui/core/Switch';
+
+import MenuItem from "@material-ui/core/MenuItem";
+
 const SelectTemplate = props => {
     return (
-        <TextField style={{ width: '20%' }} label="Templates" variant="outlined" select
+        <TextField style={{ width: '50%' }} label="Templates" variant="outlined" select
             InputLabelProps={{
                 shrink: true
             }}
@@ -30,7 +31,7 @@ const SelectTemplate = props => {
 
 const SelectAuditor = props => {
     return (
-        <TextField style={{ width: '20%' }} label="Auditor" variant="outlined" select
+        <TextField style={{ width: '50%' }} label="Auditor" variant="outlined" select
             InputLabelProps={{
                 shrink: true
             }}
@@ -50,7 +51,7 @@ const SelectAuditor = props => {
 
 const SelectRep = props => {
     return (
-        <TextField style={{ width: '20%' }} label="Representante" variant="outlined" select
+        <TextField style={{ width: '50%' }} label="Representante" variant="outlined" select
             InputLabelProps={{
                 shrink: true
             }}
@@ -70,7 +71,7 @@ const SelectRep = props => {
 
 const SelectSetor = props => {
     return (
-        <TextField style={{ width: '20%' }} label="Setor" variant="outlined" select
+        <TextField style={{ width: '50%' }} label="Setor" variant="outlined" select
             InputLabelProps={{
                 shrink: true
             }}
@@ -87,71 +88,171 @@ const SelectSetor = props => {
         </TextField>
     )
 }
-export default class AuditoriaForm extends Component {
-    state = {
-        currentSelect: 1,
-        checkedB:false
+
+const drawerWidth = 240;
+const useStyles = makeStyles((theme) => ({
+    textH1: {
+        fontSize: theme.typography.h1.fontSize = 24,
+        fontWeight: theme.typography.h1.fontWeight = 400,
+    },
+    textH2: {
+        marginTop: 15,
+        marginBottom: 5,
+        fontSize: theme.typography.h2.fontSize = 16,
+    },
+    textBody: {
+        marginBlock: 10,
+        fontSize: theme.typography.body1.fontSize = 16,
+    },
+    textResult: {
+        marginLeft: 10,
+        fontSize: theme.typography.body2.fontSize = 18,
+        fontWeight: theme.typography.body2.fontWeight = 500,
+    },
+    cardContent: {
+        marginBottom: 10,
+        minHeight: 100,
+    },
+    gridContent: {
+        marginBottom: 15,
+    },
+    datePicker: {
+        marginTop: 5,
+        marginLeft: 10
+    },
+    dividerBot: {
+        marginTop: 30,
+    },
+    buttons: {
+        marginTop: 30
+    },
+    buttonSave: {
+        background: "#05DAA7",
+        color: '#ffff',
+        "&:hover": {
+            backgroundColor: "#05DAA7",
+        },
+        fontWeight: 400,
+    },
+    buttonCancel: {
+        marginLeft: 10,
+        color: '#ffff',
+        "&:hover": {
+            backgroundColor: "#303337"
+        },
+        background: "#303337",
+        fontWeight: 400,
+    },
+    content: {
+        zIndex: theme.zIndex.drawer + 1,
+        padding: theme.spacing(14),
+        transition: theme.transitions.create(['width', 'margin'], {
+            easing: theme.transitions.easing.sharp,
+            duration: theme.transitions.duration.leavingScreen,
+        })
+    },
+    contentShift: {
+        marginLeft: 170,
+        width: `calc(100% - ${drawerWidth}px)`,
+        transition: theme.transitions.create(['width', 'margin'], {
+            easing: theme.transitions.easing.sharp,
+            duration: theme.transitions.duration.enteringScreen,
+        }),
     }
+}));
 
-    handleChange = (event) => {
-        this.setState({checkedB: event.target.checked });
-      };
-    changeType = event => {
-        this.setState({ currentSelect: event.target.value })
-        this.onAdd()
-    }
-    render() {
-        return (
-            <div className="cardsP">
-                <h3 className="title">Criar não conformidade</h3>
-                <form>
-                    <div className="cards">
-                        <SelectTemplate style={{ width: '50%' }} label="Setor" current={this.state.currentSelect} changeSelect={(event) => this.changeType(event)}></SelectTemplate>
-                    </div>
-                    <br></br>
-                    <div className="areaTitle">
-                        <SelectAuditor style={{ width: '50%', marginleft: '30px' }} current={this.state.currentSelect} changeSelect={(event) => this.changeType(event)}></SelectAuditor>
-                        <SelectRep style={{ width: '50%', marginleft: '30px' }} current={this.state.currentSelect} changeSelect={(event) => this.changeType(event)}></SelectRep>
-                        <SelectSetor style={{ width: '50%', marginleft: '30px' }} current={this.state.currentSelect} changeSelect={(event) => this.changeType(event)}></SelectSetor>
+export default function FormNCF(props) {
+    const classes = useStyles();
+    const open = props.text
 
-                    </div>
-                    <div style={{ marginTop: 15, padding: '10px 30px' }}>
-                        <TextField type="date" style={{ width: '20%' }} style={{ width: '20%' }} InputProps={{ className: "inputQuestion", }} variant="outlined" placeholder="Título" />
-                        <TextField type="date" style={{ width: '20%' }} style={{ width: '20%' }} InputProps={{ className: "inputQuestion", }} variant="outlined" placeholder="Título" />
+    return (
+        <main className={clsx(classes.content, {
+            [classes.contentShift]: open,
+        })}>
+            <Typography variant="h1" className={classes.textH1} >
+                Criar Auditorias
+      </Typography>
 
-                    </div>
-                    <div className="cards">
-                        <TextareaAutosize
-                            rowsMax={4}
-                            aria-label="maximum height"
-                            className="textArea"
-                            defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit"
-                        />
-                    </div>
-                </form>
-                <div className="cards">
-                    <h4>Confirmação de Login    </h4>
+            <Divider />
 
-                    <TextField type="text" style={{ width: '20%' }} style={{ width: '20%' }} InputProps={{ className: "inputQuestion", }} variant="outlined" placeholder="Login" />
-                    <TextField type="password" style={{ width: '20%' }} style={{ width: '20%' }} InputProps={{ className: "inputQuestion", }} variant="outlined" placeholder="Senha" />
-                    <FormControlLabel
-                        control={
-                            <Switch
-                                checked={this.state.checkedB}
-                                onChange={this.handleChange}
-                                name="checkedB"
-                                color="primary"
-                            />
-                        }
-                        label="Ativo"
+            <Typography variant="h2" className={classes.textH2}>
+                Informações do Template
+        </Typography>
+
+
+            <Card variant="outlined" className={classes.cardContent}>
+                <CardContent>
+                    <SelectTemplate style={{ width: '50%', marginleft: '30px' }} label="Templates" style={{ width: '100%' }}   ></SelectTemplate>
+                </CardContent>
+            </Card>
+            <Typography variant="h2" className={classes.textH2}>
+                Informações do Template
+        </Typography>
+            <Card variant="outlined" className={classes.cardContent}>
+                <CardContent>
+                    <SelectAuditor style={{ width: '50%', marginleft: '30px' }} ></SelectAuditor>
+                </CardContent>
+                <CardContent>
+                    <SelectRep style={{ width: '50%', marginleft: '30px' }}></SelectRep>
+                    <SelectSetor style={{ width: '50%', marginleft: '30px' }} ></SelectSetor>
+                </CardContent>
+                <Typography variant="h2" className={classes.textH2}>
+                    Data da Auditoria:
+          </Typography>
+                <CardContent>
+                    <TextField type="date" style={{ width: '25%' }} InputProps={{ className: "inputQuestion", }} variant="outlined" placeholder="Título" />
+                    <TextField type="date" style={{ width: '25%' }} InputProps={{ className: "inputQuestion", }} variant="outlined" placeholder="Título" />
+                </CardContent>
+            </Card>
+
+
+            <Typography variant="h2" className={classes.textH2}>
+                Descrição
+      </Typography>
+
+            <Card variant="outlined" className={classes.cardContent}>
+                <CardContent>
+                    <TextareaAutosize
+                        rowsMax={4}
+                        aria-label="maximum height"
+                        className="textArea"
+                        defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit"
                     />
-                </div>
-                <div className="cards buttons">
-                    <Button className="buttons">Salvar</Button>
-                    <Button className="buttons">Cancelar</Button>
 
-                </div>
+                </CardContent>
+            </Card>
+
+
+            <Divider className={classes.dividerBot} />
+            <div className="cards">
+                <h4>Confirmação de Login    </h4>
+
+                <TextField type="text" style={{ width: '20%' }} style={{ width: '20%' }} InputProps={{ className: "inputQuestion", }} variant="outlined" placeholder="Login" />
+                <TextField type="password" style={{ width: '20%' }} style={{ width: '20%' }} InputProps={{ className: "inputQuestion", }} variant="outlined" placeholder="Senha" />
+                <FormControlLabel
+                    control={
+                        <Switch
+                            name="checkedB"
+                            color="primary"
+                        />
+                    }
+                    label="Ativo"
+                />
             </div>
-        )
-    }
+
+            <Grid container className={classes.buttons} justify="flex-end">
+                <Button variant="contained" href="Salvar" className={classes.buttonSave}>
+                    Salvar
+      </Button>
+
+                <Button variant="contained" href="Cancelar" className={classes.buttonCancel}>
+                    Cancelar
+      </Button>
+            </ Grid>
+
+        </main>
+
+
+    );
 }
+
