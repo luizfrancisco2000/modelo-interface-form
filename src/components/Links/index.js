@@ -166,8 +166,8 @@ function Links(props) {
                         { link: "/d2", title: "Auditoria 5s", name: "d2"},]
                     } />
                     <ListElement text={props.text} link="/forms" active={props.active} name="forms" icon={<Looks5Icon />} title="Auditoria 5s" />
-                    <ListElement text={props.text} link="/auditoriaNCF-chefe" active={props.active} name="auditoriaNCF-chefe" icon={<Looks5Icon />} title="NCF-chefe" />
-                    <ListElement text={props.text} link="/auditoriaNCF-setor" active={props.active} name="auditoriaNCF-setor" icon={<Looks5Icon />} title="NCF-setor" />
+                    <ListElement text={props.text} link="/auditoriaNCF-chefe" active={props.active} name="auditoriaNCF-chefe" icon={<Looks5Icon />} title="NCF Chefe" />
+                    <ListElement text={props.text} link="/auditoriaNCF-setor" active={props.active} name="auditoriaNCF-setor" icon={<Looks5Icon />} title="NCF Auditor" />
                     <ListElement text={props.text} link="/form-ncf-chefe" active={props.active} name="form-ncf-chefe" icon={<Looks5Icon />} title="Form NCF Chefe" />
                     <ListElement text={props.text} link="/form-ncf" active={props.active} name="form-ncf" icon={<Looks5Icon />} title="Form NCF Auditor" />
                 </List>
