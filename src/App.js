@@ -145,13 +145,13 @@ function App() {
         </Route>
         <Route path="/form-ncf" exact>
           <Header handleDrawerOpen={handleDrawerOpen} text={open} />
-          <Links handleDrawerClose={handleDrawerClose} text={open} />
+          <Links handleDrawerClose={handleDrawerClose} text={open} active="form-ncf"/>
           <MainContent open={open}><FormNCF/></MainContent>
         </Route>
 
         <Route path="/form-ncf-chefe" exact>
           <Header handleDrawerOpen={handleDrawerOpen} text={open} />
-          <Links handleDrawerClose={handleDrawerClose} text={open} />
+          <Links handleDrawerClose={handleDrawerClose} text={open} active="form-ncf-chefe"/>
           <MainContent open={open}><FormNCFChefe/></MainContent>
         </Route>
 
@@ -183,7 +183,7 @@ function App() {
 
           <div className="App">
             <Header handleDrawerOpen={handleDrawerOpen} text={open} />
-            <Links handleDrawerClose={handleDrawerClose} text={open} />
+            <Links handleDrawerClose={handleDrawerClose} text={open} active="conform"/>
             <Conformidades text={open} />
           </div>
         </Route>
@@ -191,14 +191,14 @@ function App() {
 
           <div className="App">
             <Header handleDrawerOpen={handleDrawerOpen} text={open} />
-            <Links handleDrawerClose={handleDrawerClose} text={open} />
+            <Links handleDrawerClose={handleDrawerClose} text={open}  active="conforms"/>
             <Conforms text={open} />
           </div>
         </Route>
         <Route path="/formResp" exact>
           <div className="App">
             <Header handleDrawerOpen={handleDrawerOpen} text={open} />
-            <Links handleDrawerClose={handleDrawerClose} text={open} />
+            <Links handleDrawerClose={handleDrawerClose} text={open} active="formResp" />
             <MainContent open={open}><ViewForm /></MainContent>
           </div>
         </Route>
