@@ -16,6 +16,10 @@ const useStyles = makeStyles((theme) => ({
     marginBlock: 10,
     fontSize: theme.typography.body1.fontSize = 16,
   },
+  textBody: {
+    marginBlock: 10,
+    fontSize: theme.typography.body1.fontSize = 16,
+  },
   textResult: {
     marginLeft: 10,
     fontSize: theme.typography.body2.fontSize = 18,

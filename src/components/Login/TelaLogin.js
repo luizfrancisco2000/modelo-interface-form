@@ -17,6 +17,26 @@ class TelaLogin extends React.Component {
             inputSenha: this.state.inputSenha=='password'? 'input':'password'
         })
     }
+
+    showHide(e){
+        this.setState({
+            inputSenha: this.state.inputSenha=='password'? 'input':'password'
+        })
+    }
+
+    showHide(e){
+        this.setState({
+            inputSenha: this.state.inputSenha=='password'? 'input':'password'
+        })
+    }
+
+    showHide(e){
+        this.setState({
+            inputSenha: this.state.inputSenha=='password'? 'input':'password'
+        })
+    }
+
+    
     render(){
         return (
             <div className='container'>
