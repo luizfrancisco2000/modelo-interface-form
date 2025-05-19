@@ -13,6 +13,13 @@ import {
   Link
 } from "react-router-dom";
 
+import Table from './Table'
+import {
+  BrowserRouter as Router,
+  Link
+} from "react-router-dom";
+
+
 
 const styles = makeStyles((theme) => ({
   container: {
