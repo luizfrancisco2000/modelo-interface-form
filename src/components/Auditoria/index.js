@@ -22,6 +22,25 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
+const useStyles = makeStyles((theme) => ({
+  content: {
+    zIndex: theme.zIndex.drawer + 1,
+    padding: theme.spacing(14),
+    transition: theme.transitions.create(['width', 'margin'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    })
+  },
+  contentShift: {
+    marginLeft: 170,
+    width: `calc(100% - ${drawerWidth}px)`,
+    transition: theme.transitions.create(['width', 'margin'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  }
+}));
+
 export default function Example(props) {
   const classes = useStyles();
   const open = props.text

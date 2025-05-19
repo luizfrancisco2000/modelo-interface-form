@@ -17,6 +17,30 @@ const useStyles = makeStyles((theme) => ({
       duration: theme.transitions.duration.leavingScreen,
     })
   },
+  const useStyles = makeStyles((theme) => ({
+    content: {
+      zIndex: theme.zIndex.drawer + 1,
+      paddingTop: theme.spacing(14),
+      paddingLeft: theme.spacing(12),
+      paddingRight: 15,
+      paddingBottom:10,
+      transition: theme.transitions.create(['width', 'margin'], {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.leavingScreen,
+      })
+    },
+    const useStyles = makeStyles((theme) => ({
+      content: {
+        zIndex: theme.zIndex.drawer + 1,
+        paddingTop: theme.spacing(14),
+        paddingLeft: theme.spacing(12),
+        paddingRight: 15,
+        paddingBottom:10,
+        transition: theme.transitions.create(['width', 'margin'], {
+          easing: theme.transitions.easing.sharp,
+          duration: theme.transitions.duration.leavingScreen,
+        })
+      },
   contentShift: {
     marginLeft: drawerWidth,
     width: `calc(100% - ${drawerWidth}px)`,
